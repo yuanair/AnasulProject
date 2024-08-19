@@ -5,6 +5,7 @@
 #include "Type.hpp"
 
 #include <cstdio>
+#include <cwchar>
 
 namespace Anasul
 {

@@ -27,7 +27,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63ec199c-e5d5-4f0e-bd87-52ac675c5460" name="更改" comment="Linux" />
+    <list default="true" id="63ec199c-e5d5-4f0e-bd87-52ac675c5460" name="更改" comment="Linux">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakePresets.json" beforeDir="false" afterPath="$PROJECT_DIR$/CMakePresets.json" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -174,7 +177,7 @@
       <workItem from="1724068850638" duration="105000" />
       <workItem from="1724068982075" duration="100000" />
       <workItem from="1724070933652" duration="5692000" />
-      <workItem from="1724080080226" duration="1615000" />
+      <workItem from="1724080080226" duration="2237000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -272,7 +275,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724081905034</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Linux">
+      <option name="closed" value="true" />
+      <created>1724083522759</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1724083522759</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
