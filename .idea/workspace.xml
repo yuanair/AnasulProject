@@ -1,0 +1,333 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="CMakePresetLoader">{
+  &quot;useNewFormat&quot;: true
+}</component>
+  <component name="CMakeReloadState">
+    <option name="reloaded" value="true" />
+  </component>
+  <component name="CMakeRunConfigurationManager">
+    <generated>
+      <config projectName="Anasul" targetName="AnasulCore" />
+      <config projectName="Anasul" targetName="AnasulLanguage" />
+      <config projectName="Anasul" targetName="Main" />
+    </generated>
+  </component>
+  <component name="CMakeSettings">
+    <configurations>
+      <configuration PROFILE_NAME="msvc_x64_x64_debug" ENABLED="true" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/out/bin/msvc_x64_x64_debug" />
+      <configuration PROFILE_NAME="msvc_x64_x64_release" ENABLED="true" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/out/bin/msvc_x64_x64_release" />
+      <configuration PROFILE_NAME="mingw_x64_debug" ENABLED="true" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/out/bin/mingw_x64_debug" />
+      <configuration PROFILE_NAME="mingw_x64_release" ENABLED="true" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/out/bin/mingw_x64_release" />
+      <configuration PROFILE_NAME="clang_cl_x64_x64_debug" ENABLED="true" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/out/bin/clang_cl_x64_x64_debug" />
+      <configuration PROFILE_NAME="clang_cl_x64_x64_release" ENABLED="true" FROM_PRESET="true" GENERATION_DIR="$PROJECT_DIR$/out/bin/clang_cl_x64_x64_release" />
+    </configurations>
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="63ec199c-e5d5-4f0e-bd87-52ac675c5460" name="更改" comment="init" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ClangdSettings">
+    <option name="formatViaClangd" value="false" />
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:msvc_x64_x64_debug" />
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CMakeLists.txt" />
+      </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MacroExpansionManager">
+    <option name="directoryName" value="x7snpubx" />
+  </component>
+  <component name="ProjectApplicationVersion">
+    <option name="ide" value="CLion" />
+    <option name="majorVersion" value="2023" />
+    <option name="minorVersion" value="3.1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2kYUv6CFtyKAOt903NRUyVcljsH" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "CMake 应用程序.LearnTools.executor": "Run",
+    "CMake 应用程序.Test.executor": "Debug",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "last_opened_file_path": "C:/WorkSpace/AnasulProject",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.fileTypes",
+    "structure.view.defaults.are.configured": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\WorkSpace\AnasulProject\Anasul\Core\Resources\Localization" />
+      <recent name="C:\WorkSpace\Whale\WhaleProject\Language" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\WorkSpace\Whale\WhaleProject\Language\Sources\Whale" />
+      <recent name="C:\WorkSpace\LearnTools\LearnLanguage\src" />
+    </key>
+  </component>
+  <component name="RunManager" selected="CMake 应用程序.Main">
+    <configuration name="AnasulCore" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Anasul" TARGET_NAME="AnasulCore" CONFIG_NAME="msvc_x64_x64_debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AnasulLanguage" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Anasul" TARGET_NAME="AnasulLanguage" CONFIG_NAME="msvc_x64_x64_debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Anasul" TARGET_NAME="Main" CONFIG_NAME="msvc_x64_x64_debug" RUN_TARGET_PROJECT_NAME="Anasul" RUN_TARGET_NAME="Main">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="CMake 应用程序.Main" />
+      <item itemvalue="CMake 应用程序.AnasulCore" />
+      <item itemvalue="CMake 应用程序.AnasulLanguage" />
+    </list>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="63ec199c-e5d5-4f0e-bd87-52ac675c5460" name="更改" comment="" />
+      <created>1723460230941</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1723460230941</updated>
+      <workItem from="1723460232239" duration="760000" />
+      <workItem from="1723472377862" duration="4286000" />
+      <workItem from="1723545289024" duration="829000" />
+      <workItem from="1723560853562" duration="598000" />
+      <workItem from="1723608437863" duration="1489000" />
+      <workItem from="1723621978939" duration="2180000" />
+      <workItem from="1723625868011" duration="17000" />
+      <workItem from="1723625889166" duration="4000" />
+      <workItem from="1723631159654" duration="11189000" />
+      <workItem from="1723681300214" duration="5551000" />
+      <workItem from="1723706360277" duration="9899000" />
+      <workItem from="1723734107983" duration="1103000" />
+      <workItem from="1723735723015" duration="293000" />
+      <workItem from="1723736022654" duration="515000" />
+      <workItem from="1723737511388" duration="226000" />
+      <workItem from="1723763947314" duration="1051000" />
+      <workItem from="1723765111781" duration="9797000" />
+      <workItem from="1723795071525" duration="164000" />
+      <workItem from="1723797355826" duration="4859000" />
+      <workItem from="1723817818175" duration="10299000" />
+      <workItem from="1723883277888" duration="3895000" />
+      <workItem from="1723905275496" duration="5990000" />
+      <workItem from="1723958096428" duration="5297000" />
+      <workItem from="1723977556765" duration="4791000" />
+      <workItem from="1723989141896" duration="272000" />
+      <workItem from="1723989936175" duration="2859000" />
+      <workItem from="1723993228259" duration="8140000" />
+      <workItem from="1724049744116" duration="413000" />
+      <workItem from="1724068850638" duration="105000" />
+      <workItem from="1724068982075" duration="100000" />
+    </task>
+    <task id="LOCAL-00001" summary="init">
+      <option name="closed" value="true" />
+      <created>1723765204648</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1723765204648</updated>
+    </task>
+    <task id="LOCAL-00002" summary="init">
+      <option name="closed" value="true" />
+      <created>1723765311570</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1723765311570</updated>
+    </task>
+    <task id="LOCAL-00003" summary="init">
+      <option name="closed" value="true" />
+      <created>1723765313685</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1723765313685</updated>
+    </task>
+    <task id="LOCAL-00004" summary="init">
+      <option name="closed" value="true" />
+      <created>1723765326939</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1723765326939</updated>
+    </task>
+    <task id="LOCAL-00005" summary="init">
+      <option name="closed" value="true" />
+      <created>1723765627336</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1723765627336</updated>
+    </task>
+    <task id="LOCAL-00006" summary="init">
+      <option name="closed" value="true" />
+      <created>1723765695135</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1723765695135</updated>
+    </task>
+    <task id="LOCAL-00007" summary="init">
+      <option name="closed" value="true" />
+      <created>1723982371800</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1723982371800</updated>
+    </task>
+    <task id="LOCAL-00008" summary="init">
+      <option name="closed" value="true" />
+      <created>1723993881925</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1723993881925</updated>
+    </task>
+    <task id="LOCAL-00009" summary="init">
+      <option name="closed" value="true" />
+      <created>1724001337428</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1724001337428</updated>
+    </task>
+    <task id="LOCAL-00010" summary="init">
+      <option name="closed" value="true" />
+      <created>1724068945227</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1724068945227</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticReloadCMake value="true" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="User">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="*" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="init" />
+    <option name="LAST_COMMIT_MESSAGE" value="init" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Anasul/Core/Sources/Anasul/LoggerToStream.cpp</url>
+          <line>19</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Anasul/Core/Sources/Anasul/LoggerToStream.cpp</url>
+          <line>31</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/main.cpp</url>
+          <line>50</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/Anasul/Language/Sources/Anasul/LexerDefault.hpp</url>
+          <line>133</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>
