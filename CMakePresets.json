@@ -59,10 +59,10 @@
 			"description": "Clang",
 			"hidden": true,
 			"inherits": "Base",
-			"name": "clang_cl_x64_x64",
+			"name": "clang",
 			"vendor": {
 				"jetbrains.com/clion": {
-					"toolchain": "clang_cl_x64_x64"
+					"toolchain": "clang"
 				}
 			}
 		},
@@ -103,16 +103,16 @@
 				"CMAKE_BUILD_TYPE": "Debug"
 			},
 			"hidden": false,
-			"inherits": "clang_cl_x64_x64",
-			"name": "clang_cl_x64_x64_debug"
+			"inherits": "clang",
+			"name": "clang_debug"
 		},
 		{
 			"cacheVariables": {
 				"CMAKE_BUILD_TYPE": "Release"
 			},
 			"hidden": false,
-			"inherits": "clang_cl_x64_x64",
-			"name": "clang_cl_x64_x64_release"
+			"inherits": "clang",
+			"name": "clang_release"
 		}
 	]
 }
