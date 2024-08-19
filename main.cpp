@@ -33,7 +33,7 @@ public:
 		
 		std::filesystem::current_path(std::filesystem::current_path() / "Data");
 		
-		std::ifstream ifs{"./test.anasul"};
+		std::basic_ifstream<Anasul::chararcter> ifs{"./test.anasul"};
 		
 		if (!ifs.is_open())
 		{
@@ -42,13 +42,13 @@ public:
 			return;
 		}
 		
-		Anasul::LexerDefault<Anasul::c8> lexer{ifs, GetLogger()};
+		Anasul::LexerDefault<Anasul::chararcter> lexer{ifs, GetLogger()};
 		
 		while (!lexer.IsEnd())
 		{
 			auto token = lexer.AnalysisNext();
 			if (!token) continue;
-			GetLogger().Log(Anasul::LogLevel::Info, std::format("> {}", token->ToString()));
+			GetLogger().Log(Anasul::LogLevel::Info, std::format(TEXT("> {}"), token->ToString()));
 		}
 		
 		ifs.close();

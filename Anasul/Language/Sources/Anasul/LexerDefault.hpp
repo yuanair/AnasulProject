@@ -9,6 +9,7 @@
 
 #include <Anasul/StateMachine.hpp>
 #include <Anasul/Logger.hpp>
+#include <Anasul/Type.hpp>
 
 #include <memory>
 
@@ -59,12 +60,17 @@ namespace Anasul
 			StateBase::ResultType OnTick(LexerDefault &lexer) override
 			{
 				auto ch = lexer.GetIStream().peek();
-				if (isdigit(ch))
+				if (IsDigit(ch))
 				{
 					lexer.GetStateMachine().template SetState<StateInteger>();
 					return nullptr;
 				}
-				else if (isspace(ch))
+				else if (IsSpace(ch))
+				{
+					lexer.GetIStream().get();
+					return nullptr;
+				}
+				else if (IsEOF(ch))
 				{
 					lexer.GetIStream().get();
 					return nullptr;
@@ -110,7 +116,7 @@ namespace Anasul
 			StateBase::ResultType OnTick(LexerDefault &lexer) override
 			{
 				auto ch = lexer.GetIStream().peek();
-				if (isdigit(ch))
+				if (IsDigit(ch))
 				{
 					m_integer += ch;
 					lexer.GetIStream().get();
@@ -164,7 +170,7 @@ namespace Anasul
 			StateBase::ResultType OnTick(LexerDefault &lexer) override
 			{
 				auto ch = lexer.GetIStream().peek();
-				if (isdigit(ch))
+				if (IsDigit(ch))
 				{
 					m_dec += ch;
 					lexer.GetIStream().get();
@@ -242,7 +248,7 @@ namespace Anasul
 			StateBase::ResultType OnTick(LexerDefault &lexer) override
 			{
 				auto ch = lexer.GetIStream().peek();
-				if (isdigit(ch))
+				if (IsDigit(ch))
 				{
 					m_eNumber += ch;
 					lexer.GetIStream().get();
@@ -308,9 +314,16 @@ namespace Anasul
 	
 	public:
 		
-		void OutError(Error error, StringViewA message);
+		void OutInfo(Info info, StringViewA message,
+		             std::source_location sourceLocation = std::source_location::current());
 		
-		void OutErrorUnexpectedChar(i32 ch);
+		void OutWarning(Warning warning, StringViewA message,
+		                std::source_location sourceLocation = std::source_location::current());
+		
+		void OutError(Error error, StringViewA message,
+		              std::source_location sourceLocation = std::source_location::current());
+		
+		void OutErrorUnexpectedChar(i32 ch, std::source_location sourceLocation = std::source_location::current());
 	
 	public:
 		
@@ -350,21 +363,41 @@ namespace Anasul
 	}
 	
 	template<class ElemT>
-	void LexerDefault<ElemT>::OutErrorUnexpectedChar(i32 ch)
+	void LexerDefault<ElemT>::OutInfo(LexerDefault::Info info, StringViewA message, std::source_location sourceLocation)
+	{
+		GetLogger().Log(
+			Anasul::LogLevel::Info, std::format("I{:04X}: {}", static_cast<i32>(info), message), sourceLocation
+		);
+	}
+	
+	template<class ElemT>
+	void LexerDefault<ElemT>::OutWarning(LexerDefault::Warning warning, StringViewA message,
+	                                     std::source_location sourceLocation)
+	{
+		GetLogger().Log(
+			Anasul::LogLevel::Warning, std::format("W{:04X}: {}", static_cast<i32>(warning), message), sourceLocation
+		);
+	}
+	
+	template<class ElemT>
+	void LexerDefault<ElemT>::OutError(Error error, StringViewA message, std::source_location sourceLocation)
+	{
+		GetLogger().Log(
+			Anasul::LogLevel::Error, std::format("E{:04X}: {}", static_cast<i32>(error), message), sourceLocation
+		);
+	}
+	
+	template<class ElemT>
+	void LexerDefault<ElemT>::OutErrorUnexpectedChar(i32 ch, std::source_location sourceLocation)
 	{
 		OutError(
 			ErrorUnexpectedCharacter,
 			isprint(ch) ? std::format("unexpected character '{}'", static_cast<c8>(ch)) : std::format(
 				"unexpected character 0x{:X}", ch
-			));
+			), sourceLocation
+		);
 		GetStateMachine().template SetState<StateStart>();
 		GetIStream().get();
-	}
-	
-	template<class ElemT>
-	void LexerDefault<ElemT>::OutError(Error error, StringViewA message)
-	{
-		GetLogger().Log(Anasul::LogLevel::Error, std::format("E{:04X}: {}", static_cast<i32>(error), message));
 	}
 	
 	template<class ElemT>
