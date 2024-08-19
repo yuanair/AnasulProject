@@ -13,7 +13,7 @@ namespace Anasul
 	{
 	
 	/// 是否为EOF
-	ANASUL_API inline boolean IsEOF(i32 ch);
+	ANASUL_API boolean IsEOF(i32 ch);
 	
 	/// 是否为CR或LF
 	ANASUL_API inline boolean IsCRLF(i32 ch) { return ch == '\n' || ch == '\r'; }
