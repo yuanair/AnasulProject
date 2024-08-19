@@ -27,11 +27,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63ec199c-e5d5-4f0e-bd87-52ac675c5460" name="更改" comment="Linux">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Language/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Language/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakePresets.json" beforeDir="false" afterPath="$PROJECT_DIR$/CMakePresets.json" afterDir="false" />
-    </list>
+    <list default="true" id="63ec199c-e5d5-4f0e-bd87-52ac675c5460" name="更改" comment="Linux" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -178,7 +174,7 @@
       <workItem from="1724068850638" duration="105000" />
       <workItem from="1724068982075" duration="100000" />
       <workItem from="1724070933652" duration="5692000" />
-      <workItem from="1724080080226" duration="1297000" />
+      <workItem from="1724080080226" duration="1615000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -268,7 +264,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724081659755</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Linux">
+      <option name="closed" value="true" />
+      <created>1724081905034</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1724081905034</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

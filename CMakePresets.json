@@ -7,13 +7,13 @@
 	},
 	"configurePresets": [
 		{
-			"binaryDir": "${sourceDir}\\out\\bin\\${presetName}",
-			"installDir": "${sourceDir}\\out\\install\\${presetName}",
+			"binaryDir": "${sourceDir}/out/bin/${presetName}",
+			"installDir": "${sourceDir}/out/install/${presetName}",
 			"cacheVariables": {
 				"CMAKE_BUILD_TYPE": null,
 				"CMAKE_C_COMPILER": null,
 				"CMAKE_CXX_COMPILER": null,
-				"CMAKE_INSTALL_PREFIX": "${sourceDir}\\out\\install\\${presetName}",
+				"CMAKE_INSTALL_PREFIX": "${sourceDir}/out/install/${presetName}",
 				"CMAKE_TOOLCHAIN_FILE": null
 			},
 			"description": "Base",
