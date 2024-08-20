@@ -29,11 +29,6 @@
   <component name="ChangeListManager">
     <list default="true" id="63ec199c-e5d5-4f0e-bd87-52ac675c5460" name="更改" comment="Linux">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Main.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Main.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Type.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Type.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Type.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Type.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Language/Sources/Anasul/LexerDefault.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Language/Sources/Anasul/LexerDefault.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +38,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:mingw_x64_debug" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:mingw_x64_release" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -132,9 +127,9 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="CMake 应用程序.Main" />
       <item itemvalue="CMake 应用程序.AnasulCore" />
       <item itemvalue="CMake 应用程序.AnasulLanguage" />
+      <item itemvalue="CMake 应用程序.Main" />
     </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="应用程序级" UseSingleDictionary="true" transferred="true" />
@@ -178,7 +173,8 @@
       <workItem from="1724070933652" duration="5692000" />
       <workItem from="1724080080226" duration="2817000" />
       <workItem from="1724119789722" duration="1224000" />
-      <workItem from="1724121027344" duration="1679000" />
+      <workItem from="1724121027344" duration="1986000" />
+      <workItem from="1724123027540" duration="2000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -300,7 +296,23 @@
       <option name="project" value="LOCAL" />
       <updated>1724084103240</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Linux">
+      <option name="closed" value="true" />
+      <created>1724122758633</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1724122758633</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Linux">
+      <option name="closed" value="true" />
+      <created>1724122842026</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1724122842026</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
