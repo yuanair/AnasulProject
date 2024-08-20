@@ -26,7 +26,7 @@ namespace Anasul
 	public:
 		
 		/// 是否为EOF
-		static boolean IsEOF(i32 ch) { return ch == Type::eof || ch == Type::weof; }
+		static inline boolean IsEOF(i32 ch) { return ch == Type::eof || ch == Type::weof; }
 		
 		/// 是否为CR或LF
 		static inline boolean IsCRLF(i32 ch) { return ch == '\n' || ch == '\r'; }
