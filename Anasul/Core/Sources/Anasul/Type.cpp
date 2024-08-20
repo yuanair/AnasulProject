@@ -4,13 +4,7 @@
 
 #include "Type.hpp"
 
-#include <cstdio>
-#include <cwchar>
-
 namespace Anasul
 {
-	boolean IsEOF(i32 ch)
-	{
-		return ch == EOF || ch == WEOF;
-	}
+	
 } // Anasul

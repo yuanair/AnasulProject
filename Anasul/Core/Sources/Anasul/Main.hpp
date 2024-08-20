@@ -4,6 +4,12 @@
 
 #pragma once
 
+#include "Config.hpp"
+
+#ifdef TEXT
+	#undef TEXT
+#endif
+
 /// 入口函数
 Anasul::Program &AnasulMain(); // NOLINT(*-redundant-declaration)
 
@@ -12,7 +18,6 @@ Anasul::Program &AnasulMain(); // NOLINT(*-redundant-declaration)
 #include <Windows.h>
 #include <tchar.h>
 
-#include "Config.hpp"
 #include "Program.hpp"
 #include "Application.hpp"
 
@@ -28,7 +33,6 @@ int APIENTRY _tWinMain(HINSTANCE, HINSTANCE, LPTSTR, int)
 
 #else
 
-#include "Config.hpp"
 #include "Program.hpp"
 #include "Application.hpp"
 

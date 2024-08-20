@@ -60,17 +60,17 @@ namespace Anasul
 			StateBase::ResultType OnTick(LexerDefault &lexer) override
 			{
 				auto ch = lexer.GetIStream().peek();
-				if (IsDigit(ch))
+				if (Type::IsDigit(ch))
 				{
 					lexer.GetStateMachine().template SetState<StateInteger>();
 					return nullptr;
 				}
-				else if (IsSpace(ch))
+				else if (Type::IsSpace(ch))
 				{
 					lexer.GetIStream().get();
 					return nullptr;
 				}
-				else if (IsEOF(ch))
+				else if (Type::IsEOF(ch))
 				{
 					lexer.GetIStream().get();
 					return nullptr;
@@ -116,7 +116,7 @@ namespace Anasul
 			StateBase::ResultType OnTick(LexerDefault &lexer) override
 			{
 				auto ch = lexer.GetIStream().peek();
-				if (IsDigit(ch))
+				if (Type::IsDigit(ch))
 				{
 					m_integer += ch;
 					lexer.GetIStream().get();
@@ -170,7 +170,7 @@ namespace Anasul
 			StateBase::ResultType OnTick(LexerDefault &lexer) override
 			{
 				auto ch = lexer.GetIStream().peek();
-				if (IsDigit(ch))
+				if (Type::IsDigit(ch))
 				{
 					m_dec += ch;
 					lexer.GetIStream().get();
@@ -248,7 +248,7 @@ namespace Anasul
 			StateBase::ResultType OnTick(LexerDefault &lexer) override
 			{
 				auto ch = lexer.GetIStream().peek();
-				if (IsDigit(ch))
+				if (Type::IsDigit(ch))
 				{
 					m_eNumber += ch;
 					lexer.GetIStream().get();

@@ -29,6 +29,7 @@ public:
 	void BeginPlay() override
 	{
 		GetLogger().Log(Anasul::LogLevel::Info, std::format("{} {}", Anasul::GetNameA(), Anasul::GetVersionA()));
+		GetLogger().Log(Anasul::LogLevel::Info, std::format(": {}", Anasul::Type::eof));
 		GetLogger().Flush();
 		
 		std::filesystem::current_path(std::filesystem::current_path() / "Data");
@@ -62,7 +63,8 @@ public:
 	
 	void EndPlay() override
 	{
-	
+		GetLogger().Log(Anasul::LogLevel::Info, "EndPlay");
+		GetLogger().Flush();
 	}
 };
 
