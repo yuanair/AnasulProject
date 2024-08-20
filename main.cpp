@@ -9,6 +9,9 @@
 #include <Anasul/LoggerFormatterSimple.hpp>
 #include <Anasul/LexerDefault.hpp>
 
+#include <Anasul/WindowFactory.hpp>
+#include <Anasul/RendererFactory.hpp>
+
 #include <thread>
 #include <format>
 #include <iostream>
@@ -54,18 +57,31 @@ public:
 		
 		ifs.close();
 		
+		m_window = Anasul::WindowFactory::CreateWindow(Anasul::WindowType::GLFW);
+		m_renderer = Anasul::RendererFactory::Create(Anasul::RendererType::OpenGL);
+		
+		m_window->Create("Anasul", 1280, 720);
+		
 	}
 	
 	void Tick() override
 	{
-		Anasul::Application::Exit();
+		m_window->Update();
 	}
 	
 	void EndPlay() override
 	{
+		m_window.reset();
+		m_renderer.reset();
 		GetLogger().Log(Anasul::LogLevel::Info, "EndPlay");
 		GetLogger().Flush();
 	}
+
+private:
+	
+	std::unique_ptr<Anasul::Window> m_window;
+	std::unique_ptr<Anasul::Renderer> m_renderer;
+	
 };
 
 Anasul::Program &AnasulMain()

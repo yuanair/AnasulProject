@@ -30,7 +30,10 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/${CMAKE_CXX_COMPILE
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin/${CMAKE_CXX_COMPILER_ID}_${CMAKE_BUILD_TYPE})
 
 #
-add_executable(Main "main.cpp")
-target_link_libraries(Main PUBLIC ${PROJECT_NAME}Core PUBLIC ${PROJECT_NAME}Language)
+add_executable(Main "./main.cpp")
+target_link_libraries(Main PUBLIC ${PROJECT_NAME}Core PUBLIC ${PROJECT_NAME}Language PUBLIC ${PROJECT_NAME}Render)
 
 add_subdirectory(Anasul)
+add_subdirectory(GLAD)
+add_subdirectory(GLFW)
+add_subdirectory(Tests)
