@@ -4,7 +4,8 @@
 
 #include "RendererFactory.hpp"
 
-#include "DirectX/DirectX3D12Renderer.hpp"
+#include "DirectX2D/DirectX2DRenderer.hpp"
+#include "DirectX3D/DirectX3D12Renderer.hpp"
 #include "OpenGL/OpenGLRenderer.hpp"
 #include "Vulkan/VulkanRenderer.hpp"
 
@@ -15,6 +16,8 @@ namespace Anasul
 		logger.Log(LogLevel::Info, "Creating renderer of type: " + std::to_string(static_cast<int>(type)));
 		switch (type)
 		{
+			case RendererType::DirectX2D:
+				return std::make_unique<DirectX2DRenderer>();
 			case RendererType::DirectX3D12:
 				return std::make_unique<DirectX3D12Renderer>();
 			case RendererType::OpenGL:

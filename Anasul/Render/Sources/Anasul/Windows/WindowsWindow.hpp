@@ -33,8 +33,6 @@ namespace Anasul
 	
 	public:
 		
-		[[nodiscard]] i32 IsDarkMode() const override;
-		
 		boolean Create(StringViewA title, i32 width, i32 height) override;
 		
 		boolean Create(StringViewW title, i32 width, i32 height) override;

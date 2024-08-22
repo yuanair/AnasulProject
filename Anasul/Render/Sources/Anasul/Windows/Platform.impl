@@ -1,0 +1,140 @@
+//
+// Created by admin on 2024/8/22.
+//
+
+#include <Anasul/Windows/Windows.hpp>
+
+namespace Anasul
+{
+	
+	void Platform::GetPlatformName(StringA &name)
+	{
+		name = "Windows";
+	}
+	
+	void Platform::GetPlatformName(StringW &name)
+	{
+		name = L"Windows";
+	}
+	
+	boolean Platform::IsDarkMode()
+	{
+		u32 value;
+		OnlyInWindows::ReadFromRegedit(
+			OnlyInWindows::KeyCurrentUser, L"Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+			L"AppsUseLightTheme",
+			value
+		);
+		return value == 0;
+	}
+	
+	boolean Platform::IsLightMode()
+	{
+		u32 value;
+		OnlyInWindows::ReadFromRegedit(
+			OnlyInWindows::KeyCurrentUser, L"Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize",
+			L"AppsUseLightTheme",
+			value
+		);
+		return value == 1;
+	}
+	
+	boolean Platform::IsUserAnAdmin()
+	{
+		return ::IsUserAnAdmin();
+	}
+	
+	void Platform::GetCommandLine(StringA &commandLine)
+	{
+		commandLine = ::GetCommandLineA();
+	}
+	
+	void Platform::GetCommandLine(StringW &commandLine)
+	{
+		commandLine = ::GetCommandLineW();
+	}
+	
+	boolean Platform::OnlyInWindows::ReadFromRegedit(Key hKey, StringViewW subKey, StringViewW subKeyValue, u32 &value)
+	{
+		// HKEY openKey;
+		DWORD valueSize;
+		// if (::RegOpenKeyExW((HKEY) hKey, subKey.data(), 0, KEY_READ, &openKey) != ERROR_SUCCESS) return false;
+		if (::RegGetValueW((HKEY) hKey, subKey.data(), subKeyValue.data(), RRF_RT_REG_DWORD, nullptr, &value, &valueSize
+		) !=
+		    ERROR_SUCCESS)
+			return false;
+		//::RegCloseKey((HKEY) openKey);
+		return true;
+	}
+	
+	boolean
+	Platform::OnlyInWindows::ReadFromRegedit(Key hKey, StringViewW subKey, StringViewW subKeyValue, StringW &value)
+	{
+		DWORD valueSize;
+		if (::RegGetValueW((HKEY) hKey, subKey.data(), subKeyValue.data(), RRF_RT_REG_SZ, nullptr, nullptr, &valueSize
+		) !=
+		    ERROR_SUCCESS)
+			return false;
+		value.resize(valueSize / sizeof(StringViewW::value_type) - 2);
+		if (::RegGetValueW((HKEY) hKey, subKey.data(), subKeyValue.data(), RRF_RT_REG_SZ, nullptr, &value[0], &valueSize
+		) !=
+		    ERROR_SUCCESS)
+			return false;
+		return true;
+	}
+	
+	boolean
+	Platform::OnlyInWindows::WriteToRegedit(Key hKey, StringViewW subKey, StringViewW subKeyValue, StringViewW value)
+	{
+		HKEY createKey;
+		if (::RegCreateKeyExW(
+			(HKEY) hKey,
+			subKey.data(),
+			0,
+			nullptr,
+			REG_OPTION_NON_VOLATILE,
+			KEY_WRITE,
+			nullptr,
+			&createKey,
+			nullptr
+		) != ERROR_SUCCESS)
+			return false;
+		//
+		if (::RegSetValueExW(
+			createKey,
+			subKeyValue.data(),
+			0,
+			REG_SZ,
+			reinterpret_cast<LPBYTE>(const_cast<cwide *>(value.data())),
+			sizeof(StringViewW::value_type) * (value.size() + 1)) != ERROR_SUCCESS)
+			return false;
+		::RegCloseKey(createKey);
+		return true;
+	}
+	
+	boolean Platform::OnlyInWindows::DeleteKeyInRegedit(Key hKey, StringViewW subKey)
+	{
+		return ::RegDeleteKeyExW((HKEY) hKey, subKey.data(), 0, 0) == ERROR_SUCCESS;
+	}
+	
+	boolean Platform::OnlyInWindows::DeleteKeyValueInRegedit(Key hKey, StringViewW subKey, StringViewW subKeyValue)
+	{
+		return ::RegDeleteKeyValueW((HKEY) hKey, subKey.data(), subKeyValue.data()) == ERROR_SUCCESS;
+	}
+	
+	boolean Platform::OnlyInWindows::SetBootStartUp(StringViewW key, StringViewW command)
+	{
+		return WriteToRegedit(KeyCurrentUser, L"Software\\Microsoft\\Windows\\CurrentVersion\\Run", key, command);
+	}
+	
+	boolean Platform::OnlyInWindows::GetBootStartUp(StringViewW key, StringW &command)
+	{
+		return ReadFromRegedit(KeyCurrentUser, L"Software\\Microsoft\\Windows\\CurrentVersion\\Run", key, command);
+	}
+	
+	boolean Platform::OnlyInWindows::DeleteBootStartUp(StringViewW key)
+	{
+		return DeleteKeyValueInRegedit(KeyCurrentUser, L"Software\\Microsoft\\Windows\\CurrentVersion\\Run", key);
+	}
+	
+} // Anasul

@@ -4,13 +4,13 @@
 
 #include "Platform.hpp"
 
-#include "Windows/WindowsPlatform.hpp"
+#ifdef ANASUL_TARGET_WINDOWS
 
-namespace Anasul
-{
-	Platform &Platform::Get()
-	{
-		return WindowsPlatform::Get();
-	}
-	
-} // Anasul
+#include "Windows/Platform.impl"
+
+#else
+
+#error "Platform not supported!"
+
+#endif
+

@@ -34,43 +34,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63ec199c-e5d5-4f0e-bd87-52ac675c5460" name="更改" comment="GUI">
-      <change afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Conv.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Conv.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Main.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Windows/Result.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Windows/Result.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Windows/Windows.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Platform.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Platform.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/WindowsPlatform.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/WindowsPlatform.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/WindowsWindow.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/WindowsWindow.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/QtSettings.xml" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DWrite/DWrite.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DWrite/DWriteRenderer.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DWrite/DWriteRenderer.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX2D/DirectX2D.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX2D/DirectX2DRenderer.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX2D/DirectX2DRenderer.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX3D/DirectX3D12.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/Platform.impl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Core/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Application.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Application.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Application.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Application.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Config.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Config.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Logger.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Logger.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/LoggerFormatterSimple.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/LoggerFormatterSimple.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Main.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Main.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Platform.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Platform.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Program.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Program.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Version.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Version.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Qt/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Qt/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Windows/Result.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Windows/Result.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Windows/Result.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Windows/Result.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Windows/Windows.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Windows/Windows.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Anasul/Render/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX/DirectX3D12Renderer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX/DirectX3D12Renderer.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/GLFW/GLFWWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/GLFW/GLFWWindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX/DirectX3D12Renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX3D/DirectX3D12Renderer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX/DirectX3D12Renderer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX3D/DirectX3D12Renderer.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/GLFW/GLFWWindow.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/GLFW/GLFWWindow.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Platform.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Platform.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Platform.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Platform.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Renderer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Renderer.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/RendererFactory.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/RendererFactory.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/RendererFactory.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/RendererFactory.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Window.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Window.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/WindowFactory.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/WindowFactory.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/WindowFactory.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/WindowFactory.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/QtTest/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/QtTest/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/WindowsPlatform.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/WindowsPlatform.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/WindowsWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/WindowsWindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/WindowsWindow.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/WindowsWindow.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,7 +69,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:msvc_x64_x64_debug" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:mingw_x64_debug" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -160,6 +148,11 @@
     </key>
   </component>
   <component name="RunManager" selected="CMake 应用程序.Main">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Anasul" type="CMakeListConfigurationType" factoryName="CMakeListConfigurationFactory" temporary="true">
       <method v="2" />
     </configuration>
@@ -194,11 +187,6 @@
       </method>
     </configuration>
     <configuration name="QtTest" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Anasul" TARGET_NAME="QtTest" CONFIG_NAME="msvc_x64_x64_debug" RUN_TARGET_PROJECT_NAME="Anasul" RUN_TARGET_NAME="QtTest">
-      <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
@@ -265,7 +253,8 @@
       <workItem from="1724139159916" duration="11374000" />
       <workItem from="1724154561742" duration="2112000" />
       <workItem from="1724212075042" duration="17649000" />
-      <workItem from="1724312219391" duration="4385000" />
+      <workItem from="1724312219391" duration="4871000" />
+      <workItem from="1724320124427" duration="16560000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -419,7 +408,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724148737984</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="GUI">
+      <option name="closed" value="true" />
+      <created>1724316821713</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1724316821713</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -474,17 +471,6 @@
     <MESSAGE value="Linux" />
     <MESSAGE value="GUI" />
     <option name="LAST_COMMIT_MESSAGE" value="GUI" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/Anasul/Core/Sources/Anasul/LoggerToStream.cpp</url>
-          <line>31</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

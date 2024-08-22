@@ -9,7 +9,7 @@
 #include <Anasul/Logger.hpp>
 #include <Anasul/String.hpp>
 #include <Anasul/Windows/Windows.hpp>
-#include "WindowsPlatform.hpp"
+#include "../Platform.hpp"
 
 #include <format>
 
@@ -29,54 +29,55 @@ namespace Anasul
 	
 	LPSTR WindowsWindow::GetDefaultWindowClassA()
 	{
-		static auto atom = (LPSTR) MAKEINTATOM(RegisterWindowClass("DefaultWindowClassA", WndProcA, nullptr, nullptr));
+		static auto atom = (LPSTR) MAKEINTATOM(RegisterWindowClass(
+			"DefaultWindowClassA", WndProcA, ::LoadIconA(nullptr, (LPCSTR) IDI_APPLICATION),
+			::LoadCursorA(nullptr, (LPCSTR) IDC_ARROW)));
 		return atom;
 	}
 	
 	LPWSTR WindowsWindow::GetDefaultWindowClassW()
 	{
 		static auto atom = (LPWSTR) MAKEINTATOM(
-			RegisterWindowClass(TEXT("DefaultWindowClassW"), WndProcW, nullptr, nullptr));
+			RegisterWindowClass(
+				L"DefaultWindowClassW", WndProcW, ::LoadIconW(nullptr, (LPCWSTR) IDI_APPLICATION),
+				::LoadCursorW(nullptr, (LPCWSTR) IDC_ARROW)));
 		return atom;
 	}
 	
 	ATOM WindowsWindow::RegisterWindowClass(StringViewA className, WNDPROC wndProc, HICON icon, HCURSOR cursor)
 	{
-		WNDCLASSEXA wc{};
-		wc.cbSize = sizeof(wc);
-		wc.style = CS_HREDRAW | CS_VREDRAW;
-		wc.lpfnWndProc = wndProc;
-		wc.hInstance = ::GetModuleHandleA(nullptr);
-		wc.hCursor = ::LoadCursorA(nullptr, MAKEINTRESOURCEA(IDC_ARROW));
-		wc.hbrBackground = nullptr;
-		wc.lpszMenuName = nullptr;
-		wc.cbClsExtra = 0;
-		wc.cbWndExtra = sizeof(WindowsWindow *);
-		wc.lpszClassName = className.data();
-		
+		WNDCLASSEXA wc{
+			.cbSize = sizeof(wc),
+			.style = CS_HREDRAW | CS_VREDRAW,
+			.lpfnWndProc = wndProc,
+			.cbClsExtra = 0,
+			.cbWndExtra = sizeof(WindowsWindow *),
+			.hInstance = ::GetModuleHandleA(nullptr),
+			.hIcon = icon,
+			.hCursor = cursor,
+			.hbrBackground = nullptr,
+			.lpszMenuName = nullptr,
+			.lpszClassName = className.data()
+		};
 		return ::RegisterClassExA(&wc);
 	}
 	
 	ATOM WindowsWindow::RegisterWindowClass(StringViewW className, WNDPROC wndProc, HICON icon, HCURSOR cursor)
 	{
-		WNDCLASSEXW wc{};
-		wc.cbSize = sizeof(wc);
-		wc.style = CS_HREDRAW | CS_VREDRAW;
-		wc.lpfnWndProc = wndProc;
-		wc.hInstance = ::GetModuleHandleW(nullptr);
-		wc.hCursor = ::LoadCursorW(nullptr, MAKEINTRESOURCEW(IDC_ARROW));
-		wc.hbrBackground = nullptr;
-		wc.lpszMenuName = nullptr;
-		wc.cbClsExtra = 0;
-		wc.cbWndExtra = sizeof(WindowsWindow *);
-		wc.lpszClassName = className.data();
-		
+		WNDCLASSEXW wc{
+			.cbSize = sizeof(wc),
+			.style = CS_HREDRAW | CS_VREDRAW,
+			.lpfnWndProc = wndProc,
+			.cbClsExtra = 0,
+			.cbWndExtra = sizeof(WindowsWindow *),
+			.hInstance = ::GetModuleHandleW(nullptr),
+			.hIcon = icon,
+			.hCursor = cursor,
+			.hbrBackground = nullptr,
+			.lpszMenuName = nullptr,
+			.lpszClassName = className.data()
+		};
 		return ::RegisterClassExW(&wc);
-	}
-	
-	i32 WindowsWindow::IsDarkMode() const
-	{
-		return WindowsPlatform::Get().DarkMode();
 	}
 	
 	boolean WindowsWindow::Create(StringViewA title, i32 width, i32 height)
@@ -89,10 +90,10 @@ namespace Anasul
 			::GetModuleHandleA(nullptr),
 			this
 		);
-		if (IsDarkMode() == 1)
-			SetDarkMode(TRUE);
-		else if (IsDarkMode() == 0)
+		if (Platform::IsLightMode())
 			SetDarkMode(FALSE);
+		else
+			SetDarkMode(TRUE);
 		return IsOpen();
 	}
 	
@@ -106,10 +107,10 @@ namespace Anasul
 			::GetModuleHandleW(nullptr),
 			this
 		);
-		if (IsDarkMode() == 1)
-			SetDarkMode(TRUE);
-		else if (IsDarkMode() == 0)
+		if (Platform::IsLightMode())
 			SetDarkMode(FALSE);
+		else
+			SetDarkMode(TRUE);
 		return IsOpen();
 	}
 	
@@ -135,20 +136,20 @@ namespace Anasul
 			.cbSize = sizeof(nID),
 			.hWnd = m_hWnd,
 			.uID = 1,
-			.uFlags = NIF_INFO | NIF_ICON | NIF_MESSAGE | NIF_TIP,
-			.uCallbackMessage = WM_NOTIFY,
-			.hIcon = (HICON) ::LoadImageA(nullptr, "notify.ico", IMAGE_ICON, 0, 0, LR_LOADFROMFILE),
+			.uFlags = NIF_MESSAGE | NIF_TIP | NIF_ICON,
+			.uCallbackMessage = WM_COMMAND,
+			.hIcon =  ::LoadIconA(nullptr, (LPCSTR) IDI_APPLICATION),
 			.szTip = {},
-			.dwState = NIS_HIDDEN,
-			.dwStateMask = NIS_HIDDEN,
+			.dwState = 0,
+			.dwStateMask = 0,
 			.szInfo = "This is a notification",
 			.uVersion = NOTIFYICON_VERSION_4,
 			.szInfoTitle = "Notification Title",
-			.dwInfoFlags = NIIF_INFO,
+			.dwInfoFlags = NIIF_USER,
 			.guidItem = GUID_NULL,
-			.hBalloonIcon = nullptr,
+			.hBalloonIcon = ::LoadIconA(nullptr, (LPCSTR) IDI_APPLICATION),
 		};
-		::lstrcpynA(nID.szTip, title.data(), static_cast<int>(sizeof(title.size())));
+		::lstrcpynA(nID.szTip, title.data(), static_cast<int>(title.size() + 1));
 		//通知windows添加一个托盘图标，看参数就知道啦
 		return ::Shell_NotifyIconA(NIM_ADD, &nID);
 	}
@@ -160,20 +161,20 @@ namespace Anasul
 			.cbSize = sizeof(nID),
 			.hWnd = m_hWnd,
 			.uID = 1,
-			.uFlags = NIF_INFO | NIF_ICON | NIF_MESSAGE | NIF_TIP,
-			.uCallbackMessage = WM_NOTIFY,
-			.hIcon = (HICON) ::LoadImageW(nullptr, TEXT("notify.ico"), IMAGE_ICON, 0, 0, LR_LOADFROMFILE),
+			.uFlags = NIF_MESSAGE | NIF_TIP | NIF_ICON,
+			.uCallbackMessage = WM_COMMAND,
+			.hIcon =  ::LoadIconW(nullptr, (LPCWSTR) IDI_APPLICATION),
 			.szTip = {},
-			.dwState = NIS_HIDDEN,
-			.dwStateMask = NIS_HIDDEN,
+			.dwState = 0,
+			.dwStateMask = 0,
 			.szInfo = TEXT("This is a notification"),
 			.uVersion = NOTIFYICON_VERSION_4,
 			.szInfoTitle = TEXT("Notification Title"),
-			.dwInfoFlags = NIIF_INFO,
+			.dwInfoFlags = NIIF_USER,
 			.guidItem = GUID_NULL,
-			.hBalloonIcon = nullptr,
+			.hBalloonIcon = ::LoadIconW(nullptr, (LPCWSTR) IDI_APPLICATION),
 		};
-		::lstrcpynW(nID.szTip, title.data(), static_cast<int>(sizeof(title.size())));
+		::lstrcpynW(nID.szTip, title.data(), static_cast<int>(title.size() + 1));
 		//通知windows添加一个托盘图标，看参数就知道啦
 		return ::Shell_NotifyIconW(NIM_ADD, &nID);
 	}
@@ -455,18 +456,10 @@ namespace Anasul
 		{
 			case WM_SETTINGCHANGE:
 			case WM_THEMECHANGED:
-				if (IsDarkMode() == 1)
-				{
-					SetDarkMode(TRUE);
-				}
-				else if (IsDarkMode() == 0)
-				{
+				if (Platform::IsLightMode())
 					SetDarkMode(FALSE);
-				}
 				else
-				{
-					GetLogger().Log(LogLevel::Error, "Unknown Dark Mode");
-				}
+					SetDarkMode(TRUE);
 				return 0;
 			case WM_MENUCHAR:
 				// 禁用 alt-enter.

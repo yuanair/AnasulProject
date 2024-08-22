@@ -21,8 +21,6 @@ namespace Anasul
 	
 	public:
 		
-		virtual i32 IsDarkMode() const = 0;
-		
 		virtual boolean Create(StringViewA title, i32 width, i32 height) = 0;
 		
 		virtual boolean Create(StringViewW title, i32 width, i32 height) = 0;

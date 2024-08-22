@@ -11,6 +11,7 @@ namespace Anasul
 	
 	enum class RendererType
 	{
+		DirectX2D,
 		DirectX3D12,
 		OpenGL,
 		Vulkan

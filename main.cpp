@@ -46,6 +46,28 @@ public:
 	void BeginPlay() override
 	{
 		
+		// 注册启动项
+		Anasul::StringW startUpFileName = L"\"" + (std::filesystem::current_path() / "Main.exe").wstring() + L"\"";
+		Anasul::StringW buffer;
+		if (Anasul::Platform::OnlyInWindows::GetBootStartUp(L"Anasul", buffer))
+		{
+			if (buffer != startUpFileName)
+			{
+				GetLogger().Log(Anasul::LogLevel::Error, std::format(TEXT("Error Boot start up: {}"), buffer));
+				Anasul::Platform::OnlyInWindows::DeleteBootStartUp(L"Anasul");
+			}
+			else
+			{
+				GetLogger().Log(Anasul::LogLevel::Info, std::format(TEXT("Boot start up: {}"), buffer));
+			}
+		}
+		else
+		{
+			Anasul::Platform::OnlyInWindows::SetBootStartUp(L"Anasul", startUpFileName);
+			GetLogger().Log(
+				Anasul::LogLevel::Info, std::format(TEXT("Set Boot start up: {}"), startUpFileName));
+		}
+		
 		std::filesystem::current_path(std::filesystem::current_path() / "Data");
 		
 		std::basic_ifstream<Anasul::chararcter> ifs{
@@ -70,7 +92,7 @@ public:
 		ifs.close();
 		
 		m_window = Anasul::WindowFactory::CreateWindow(Anasul::WindowType::Default, GetLogger());
-		m_renderer = Anasul::RendererFactory::Create(Anasul::RendererType::OpenGL, GetLogger());
+		m_renderer = Anasul::RendererFactory::Create(Anasul::RendererType::DirectX2D, GetLogger());
 		
 		m_window->Create("Anasul", 1280, 720);
 		m_window->Notify("???");
