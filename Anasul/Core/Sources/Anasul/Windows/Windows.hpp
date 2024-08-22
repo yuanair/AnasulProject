@@ -22,3 +22,10 @@
 #undef GetModuleHandle
 #endif
 
+#ifdef FindWindow
+#undef FindWindow
+#endif
+
+#ifdef SendMessage
+#undef SendMessage
+#endif

@@ -33,9 +33,9 @@ namespace Anasul
 	
 	public:
 		
-		boolean Create(StringViewA title, i32 width, i32 height) override;
+		boolean Create(const WindowCreateArgs<c8> &args) override;
 		
-		boolean Create(StringViewW title, i32 width, i32 height) override;
+		boolean Create(const WindowCreateArgs<cwide> &args) override;
 		
 		boolean Update() override;
 		
@@ -49,13 +49,13 @@ namespace Anasul
 		
 		boolean Close() override;
 		
-		[[nodiscard]] boolean IsOpen() const override;
-		
 		boolean SetTitle(StringViewA title) override;
 		
 		boolean SetTitle(StringViewW title) override;
 		
 		boolean SetSize(i32 width, i32 height) override;
+		
+		boolean SetSize(u32 width, u32 height) override;
 		
 		boolean SetPosition(i32 x, i32 y) override;
 		
@@ -67,9 +67,39 @@ namespace Anasul
 		
 		boolean GetSize(i32 &width, i32 &height) const override;
 		
+		boolean GetSize(u32 &width, u32 &height) const override;
+		
 		boolean GetPosition(i32 &x, i32 &y) const override;
 		
 		boolean GetInputPosition(i32 &x, i32 &y) const override;
+		
+		[[nodiscard]] boolean IsOpen() const override;
+		
+		[[nodiscard]] boolean GetKeyDown(Key key) const override;
+		
+		[[nodiscard]] boolean GetKeyUp(Key key) const override;
+		
+		[[nodiscard]] boolean GetKeyPress(Key key) const override;
+		
+		[[nodiscard]] boolean GetMouseButtonDown(MouseButton button) const override;
+		
+		[[nodiscard]] boolean GetMouseButtonUp(MouseButton button) const override;
+		
+		[[nodiscard]] boolean GetMouseButtonPress(MouseButton button) const override;
+		
+		void GetMousePosition(i32 &x, i32 &y) const override;
+	
+	public:
+		
+		[[nodiscard]] HWND GetHWnd() const { return m_hWnd; }
+		
+		void SetHWnd(HWND hWnd)
+		{
+			Close();
+			m_hWnd = hWnd;
+		}
+		
+		[[nodiscard]] ATOM GetClassAtom() const { return m_classAtom; }
 	
 	private:
 		

@@ -9,7 +9,15 @@
 
 #include "../Window.hpp"
 
+#ifdef ANASUL_TARGET_WINDOWS
+
+#define GLFW_EXPOSE_NATIVE_WIN32
+
+#endif
+
 #include <GLFW/glfw3.h>
+#include <GLFW/glfw3native.h>
+#include <windef.h>
 
 namespace Anasul
 {
@@ -29,9 +37,9 @@ namespace Anasul
 	
 	public:
 		
-		boolean Create(StringViewA title, i32 width, i32 height) override;
+		boolean Create(const WindowCreateArgs<c8> &args) override;
 		
-		boolean Create(StringViewW title, i32 width, i32 height) override;
+		boolean Create(const WindowCreateArgs<cwide> &args) override;
 		
 		boolean Update() override;
 		
@@ -41,13 +49,13 @@ namespace Anasul
 		
 		boolean Close() override;
 		
-		[[nodiscard]] boolean IsOpen() const override;
-		
 		boolean SetTitle(StringViewA title) override;
 		
 		boolean SetTitle(StringViewW title) override;
 		
 		boolean SetSize(i32 width, i32 height) override;
+		
+		boolean SetSize(u32 width, u32 height) override;
 		
 		boolean SetPosition(i32 x, i32 y) override;
 		
@@ -59,6 +67,8 @@ namespace Anasul
 		
 		boolean GetSize(i32 &width, i32 &height) const override;
 		
+		boolean GetSize(u32 &width, u32 &height) const override;
+		
 		boolean GetPosition(i32 &x, i32 &y) const override;
 		
 		boolean GetInputPosition(i32 &x, i32 &y) const override { return false; }
@@ -66,6 +76,30 @@ namespace Anasul
 		boolean Notify(StringViewA title) override;
 		
 		boolean Notify(StringViewW title) override;
+		
+		[[nodiscard]] boolean IsOpen() const override;
+		
+		boolean GetKeyDown(Key key) const override;
+		
+		boolean GetKeyUp(Key key) const override;
+		
+		boolean GetKeyPress(Key key) const override;
+		
+		boolean GetMouseButtonDown(MouseButton button) const override;
+		
+		boolean GetMouseButtonUp(MouseButton button) const override;
+		
+		boolean GetMouseButtonPress(MouseButton button) const override;
+		
+		void GetMousePosition(i32 &x, i32 &y) const override;
+	
+	public:
+		
+		#ifdef ANASUL_TARGET_WINDOWS
+		
+		[[nodiscard]] HWND GetHWnd() const { return glfwGetWin32Window(m_window); }
+		
+		#endif
 	
 	private:
 		

@@ -12,7 +12,9 @@ namespace Anasul
 	class ANASUL_API VulkanRenderer : public Renderer
 	{
 	public:
-		void Init() override;
+		
+		WindowRenderTarget *CreateWindowRenderTarget(const Window &window) override;
+		
 	};
 	
 } // Anasul

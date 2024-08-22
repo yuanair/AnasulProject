@@ -9,13 +9,9 @@
 namespace Anasul
 {
 	
-	enum class RendererType
-	{
-		DirectX2D,
-		DirectX3D12,
-		OpenGL,
-		Vulkan
-	};
+	class Window;
+	
+	class WindowRenderTarget;
 	
 	/// 渲染器
 	class ANASUL_API Renderer
@@ -26,8 +22,8 @@ namespace Anasul
 	
 	public:
 		
-		/// 初始化渲染器
-		virtual void Init() = 0;
+		/// 创建窗口渲染目标
+		virtual WindowRenderTarget *CreateWindowRenderTarget(const Window &window) = 0;
 		
 	};
 	

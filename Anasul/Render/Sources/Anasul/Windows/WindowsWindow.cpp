@@ -80,13 +80,14 @@ namespace Anasul
 		return ::RegisterClassExW(&wc);
 	}
 	
-	boolean WindowsWindow::Create(StringViewA title, i32 width, i32 height)
+	boolean WindowsWindow::Create(const WindowCreateArgs<c8> &args)
 	{
+		Close();
 		m_hWnd = ::CreateWindowExA(
 			0,
-			GetDefaultWindowClassA(), title.data(), WS_OVERLAPPEDWINDOW,
-			CW_USEDEFAULT, CW_USEDEFAULT, width, height,
-			nullptr, nullptr,
+			GetDefaultWindowClassA(), args.m_title.data(), args.m_parent ? WS_CHILDWINDOW : WS_OVERLAPPEDWINDOW,
+			args.m_x, args.m_y, args.m_width, args.m_height,
+			(HWND) Platform::OnlyInWindows::GetHWnd(args.m_parent), nullptr,
 			::GetModuleHandleA(nullptr),
 			this
 		);
@@ -97,13 +98,14 @@ namespace Anasul
 		return IsOpen();
 	}
 	
-	boolean WindowsWindow::Create(StringViewW title, i32 width, i32 height)
+	boolean WindowsWindow::Create(const WindowCreateArgs<cwide> &args)
 	{
+		Close();
 		m_hWnd = ::CreateWindowExW(
 			0,
-			GetDefaultWindowClassW(), title.data(), WS_OVERLAPPEDWINDOW,
-			CW_USEDEFAULT, CW_USEDEFAULT, width, height,
-			nullptr, nullptr,
+			GetDefaultWindowClassW(), args.m_title.data(), args.m_parent ? WS_CHILDWINDOW : WS_OVERLAPPEDWINDOW,
+			args.m_x, args.m_y, args.m_width, args.m_height,
+			(HWND) Platform::OnlyInWindows::GetHWnd(args.m_parent), nullptr,
 			::GetModuleHandleW(nullptr),
 			this
 		);
@@ -207,6 +209,13 @@ namespace Anasul
 		return ::SetWindowPos(m_hWnd, nullptr, 0, 0, width, height, SWP_NOMOVE | SWP_NOZORDER);
 	}
 	
+	boolean WindowsWindow::SetSize(u32 width, u32 height)
+	{
+		return ::SetWindowPos(
+			m_hWnd, nullptr, 0, 0, static_cast<i32>(width), static_cast<i32>(height), SWP_NOMOVE | SWP_NOZORDER
+		);
+	}
+	
 	boolean WindowsWindow::SetPosition(i32 x, i32 y)
 	{
 		return ::SetWindowPos(m_hWnd, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
@@ -240,6 +249,15 @@ namespace Anasul
 	}
 	
 	boolean WindowsWindow::GetSize(i32 &width, i32 &height) const
+	{
+		::RECT rect;
+		boolean result = ::GetClientRect(m_hWnd, &rect);
+		width = rect.right - rect.left;
+		height = rect.bottom - rect.top;
+		return result;
+	}
+	
+	boolean WindowsWindow::GetSize(u32 &width, u32 &height) const
 	{
 		::RECT rect;
 		boolean result = ::GetClientRect(m_hWnd, &rect);
@@ -479,6 +497,45 @@ namespace Anasul
 	boolean WindowsWindow::SetDarkMode(BOOL darkMode)
 	{
 		return SUCCEEDED(::DwmSetWindowAttribute(m_hWnd, DWMWA_USE_IMMERSIVE_DARK_MODE, &darkMode, sizeof(darkMode)));
+	}
+	
+	boolean WindowsWindow::GetKeyDown(Key key) const
+	{
+		return (::GetAsyncKeyState(key) & 0x8000) != 0;
+	}
+	
+	boolean WindowsWindow::GetKeyUp(Key key) const
+	{
+		return (::GetAsyncKeyState(key) & 0x8000) == 0;
+	}
+	
+	boolean WindowsWindow::GetKeyPress(Key key) const
+	{
+		return ::GetKeyState(key);
+	}
+	
+	boolean WindowsWindow::GetMouseButtonDown(MouseButton button) const
+	{
+		return (::GetAsyncKeyState(button) & 0x8000) != 0;
+	}
+	
+	boolean WindowsWindow::GetMouseButtonUp(MouseButton button) const
+	{
+		return (::GetAsyncKeyState(button) & 0x8000) == 0;
+	}
+	
+	boolean WindowsWindow::GetMouseButtonPress(MouseButton button) const
+	{
+		return ::GetKeyState(button);
+	}
+	
+	void WindowsWindow::GetMousePosition(i32 &x, i32 &y) const
+	{
+		::POINT point;
+		::GetCursorPos(&point);
+		::ScreenToClient(m_hWnd, &point);
+		x = point.x;
+		y = point.y;
 	}
 	
 }

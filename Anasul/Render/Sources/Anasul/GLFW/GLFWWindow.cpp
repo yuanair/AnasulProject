@@ -25,19 +25,19 @@ namespace Anasul
 		glfwTerminate();
 	}
 	
-	boolean GLFWWindow::Create(StringViewA title, i32 width, i32 height)
+	boolean GLFWWindow::Create(const WindowCreateArgs<c8> &args)
 	{
 		if (!glfwInit()) return false;
-		m_window = glfwCreateWindow(width, height, title.data(), nullptr, nullptr);
+		m_window = glfwCreateWindow(args.m_width, args.m_height, args.m_title.data(), nullptr, nullptr);
 		
 		glfwMakeContextCurrent(m_window);
 		return IsOpen();
 	}
 	
-	boolean GLFWWindow::Create(StringViewW title, i32 width, i32 height)
+	boolean GLFWWindow::Create(const WindowCreateArgs<cwide> &args)
 	{
 		if (!glfwInit()) return false;
-		m_window = glfwCreateWindow(width, height, Conv::WToA(title).data(), nullptr, nullptr);
+		m_window = glfwCreateWindow(args.m_width, args.m_height, Conv::WToA(args.m_title).data(), nullptr, nullptr);
 		
 		glfwMakeContextCurrent(m_window);
 		return IsOpen();
@@ -57,7 +57,6 @@ namespace Anasul
 	
 	boolean GLFWWindow::Update()
 	{
-		glfwSwapBuffers(m_window);
 		glfwPollEvents();
 		return IsOpen();
 	}
@@ -92,6 +91,12 @@ namespace Anasul
 		return true;
 	}
 	
+	boolean GLFWWindow::SetSize(u32 width, u32 height)
+	{
+		glfwSetWindowSize(m_window, static_cast<i32>(width), static_cast<i32>(height));
+		return true;
+	}
+	
 	boolean GLFWWindow::SetPosition(i32 x, i32 y)
 	{
 		glfwSetWindowPos(m_window, x, y);
@@ -113,6 +118,15 @@ namespace Anasul
 	boolean GLFWWindow::GetSize(i32 &width, i32 &height) const
 	{
 		glfwGetWindowSize(m_window, &width, &height);
+		return true;
+	}
+	
+	boolean GLFWWindow::GetSize(u32 &width, u32 &height) const
+	{
+		i32 w, h;
+		GetSize(w, h);
+		width = static_cast<u32>(w);
+		height = static_cast<u32>(h);
 		return true;
 	}
 	
@@ -140,4 +154,41 @@ namespace Anasul
 	{
 		return false;
 	}
+	
+	boolean GLFWWindow::GetKeyDown(Key key) const
+	{
+		glfwGetKey(m_window, key);
+		return 0;
+	}
+	
+	boolean GLFWWindow::GetKeyUp(Key key) const
+	{
+		return 0;
+	}
+	
+	boolean GLFWWindow::GetKeyPress(Key key) const
+	{
+		return 0;
+	}
+	
+	boolean GLFWWindow::GetMouseButtonDown(MouseButton button) const
+	{
+		return 0;
+	}
+	
+	boolean GLFWWindow::GetMouseButtonUp(MouseButton button) const
+	{
+		return 0;
+	}
+	
+	boolean GLFWWindow::GetMouseButtonPress(MouseButton button) const
+	{
+		return 0;
+	}
+	
+	void GLFWWindow::GetMousePosition(i32 &x, i32 &y) const
+	{
+	
+	}
+	
 } // Anasul

@@ -6,8 +6,9 @@
 
 namespace Anasul
 {
-	void OpenGLRenderer::Init()
-	{
 	
+	WindowRenderTarget *OpenGLRenderer::CreateWindowRenderTarget(const Window &window)
+	{
+		return nullptr;
 	}
 } // Anasul

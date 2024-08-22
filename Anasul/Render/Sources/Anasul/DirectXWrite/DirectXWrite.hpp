@@ -7,3 +7,6 @@
 #include <Anasul/Windows/Result.hpp>
 #include <wrl.h>
 #include <dwrite.h>
+
+#undef DrawText
+#undef CreateFont

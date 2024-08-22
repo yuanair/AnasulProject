@@ -30,4 +30,22 @@ namespace Anasul
 		
 	};
 	
+	/// 空指针异常
+	class ANASUL_API NullPointerException : public Exception
+	{
+	public:
+		
+		using Exception::Exception;
+		
+	};
+	
+	/// 无效参数异常
+	class ANASUL_API InvalidArgumentException : public Exception
+	{
+	public:
+		
+		using Exception::Exception;
+		
+	};
+	
 } // Anasul

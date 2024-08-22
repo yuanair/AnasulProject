@@ -6,8 +6,9 @@
 
 namespace Anasul
 {
-	void VulkanRenderer::Init()
-	{
 	
+	WindowRenderTarget *VulkanRenderer::CreateWindowRenderTarget(const Window &window)
+	{
+		return nullptr;
 	}
 } // Anasul

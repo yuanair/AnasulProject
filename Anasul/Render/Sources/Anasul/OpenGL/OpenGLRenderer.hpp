@@ -13,7 +13,7 @@ namespace Anasul
 	{
 	public:
 		
-		void Init() override;
+		WindowRenderTarget *CreateWindowRenderTarget(const Window &window) override;
 		
 	};
 	

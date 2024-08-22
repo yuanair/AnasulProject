@@ -3,6 +3,8 @@
 //
 
 #include <Anasul/Windows/Windows.hpp>
+#include <Anasul/GLFW/GLFWWindow.hpp>
+#include "WindowsWindow.hpp"
 
 namespace Anasul
 {
@@ -52,6 +54,28 @@ namespace Anasul
 	void Platform::GetCommandLine(StringW &commandLine)
 	{
 		commandLine = ::GetCommandLineW();
+	}
+	
+	Window *Platform::DesktopWindow(Logger &logger)
+	{
+		auto *window = new WindowsWindow(logger);
+		window->SetHWnd(::GetDesktopWindow());
+		return window;
+	}
+	
+	Window *Platform::FindWindow(Logger &logger, StringViewA title)
+	{
+		auto *window = new WindowsWindow(logger);
+		window->SetHWnd(::FindWindowA(nullptr, title.data()));
+		return window;
+	}
+	
+	
+	Window *Platform::FindWindow(Logger &logger, StringViewW title)
+	{
+		auto *window = new WindowsWindow(logger);
+		window->SetHWnd(::FindWindowW(nullptr, title.data()));
+		return window;
 	}
 	
 	boolean Platform::OnlyInWindows::ReadFromRegedit(Key hKey, StringViewW subKey, StringViewW subKeyValue, u32 &value)
@@ -135,6 +159,70 @@ namespace Anasul
 	boolean Platform::OnlyInWindows::DeleteBootStartUp(StringViewW key)
 	{
 		return DeleteKeyValueInRegedit(KeyCurrentUser, L"Software\\Microsoft\\Windows\\CurrentVersion\\Run", key);
+	}
+	
+	Window *Platform::OnlyInWindows::FindWindowFromClass(Logger &logger, StringViewA name)
+	{
+		auto *window = new WindowsWindow(logger);
+		window->SetHWnd(::FindWindowA(name.data(), nullptr));
+		return window;
+	}
+	
+	Window *Platform::OnlyInWindows::FindWindowFromClass(Logger &logger, StringViewW name)
+	{
+		auto *window = new WindowsWindow(logger);
+		window->SetHWnd(::FindWindowW(name.data(), nullptr));
+		return window;
+	}
+	
+	
+	void *Platform::OnlyInWindows::GetHWnd(const Window *window)
+	{
+		if (auto *pWindowsWindow = dynamic_cast<const WindowsWindow *>(window))
+		{
+			return pWindowsWindow->GetHWnd();
+		}
+		else if (auto *pGLFWWindow = dynamic_cast<const GLFWWindow *>(window))
+		{
+			return pGLFWWindow->GetHWnd();
+		}
+		else
+		{
+			return nullptr;
+		}
+	}
+	
+	void Platform::OnlyInWindows::SetParent(Window *child, Window *parent)
+	{
+		::SetParent((HWND) GetHWnd(child), (HWND) GetHWnd(parent));
+	}
+	
+	void Platform::OnlyInWindows::SetParentToDesktop(Anasul::Window *child)
+	{
+		::SetParent((HWND) GetHWnd(child), ::FindWindowA("Progman", nullptr));
+		Anasul::Platform::OnlyInWindows::EnumWindowHide();
+	}
+	
+	BOOL CALLBACK EnumWinProc(HWND hwnd, LPARAM lParam)
+	{
+		HWND hDefView = ::FindWindowEx(hwnd, 0, L"SHELLDLL_DefView", 0);
+		if (hDefView != 0)
+		{
+			HWND hWorkerw = ::FindWindowEx(0, hwnd, L"WorkerW", 0);
+			::ShowWindow(hWorkerw, SW_HIDE);
+			return FALSE;
+		}
+		return TRUE;
+	}
+	
+	void Platform::OnlyInWindows::EnumWindowHide()
+	{
+		::EnumWindows(EnumWinProc, 0);
+	}
+	
+	void Platform::OnlyInWindows::SendMessage(Window *window, u32 message, u32 wParam, u32 lParam)
+	{
+		::SendMessageW((HWND) GetHWnd(window), message, wParam, lParam);
 	}
 	
 } // Anasul

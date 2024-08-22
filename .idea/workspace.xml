@@ -33,30 +33,42 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63ec199c-e5d5-4f0e-bd87-52ac675c5460" name="更改" comment="GUI">
-      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DWrite/DWrite.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DWrite/DWriteRenderer.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DWrite/DWriteRenderer.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX2D/DirectX2D.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX2D/DirectX2DRenderer.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX2D/DirectX2DRenderer.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX3D/DirectX3D12.hpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/Platform.impl" afterDir="false" />
+    <list default="true" id="63ec199c-e5d5-4f0e-bd87-52ac675c5460" name="更改" comment="DirectX">
+      <change afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Math.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Math.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX2D/DirectX2DWindowRenderTarget.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX2D/DirectX2DWindowRenderTarget.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectXWrite/DirectXWriteFont.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectXWrite/DirectXWriteFont.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Font.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Font.hpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/TextRenderer.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/TextRenderer.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Windows/Result.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Windows/Result.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Windows/Result.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Windows/Result.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Exception.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Exception.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Windows/Windows.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Core/Sources/Anasul/Windows/Windows.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Render/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX/DirectX3D12Renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX3D/DirectX3D12Renderer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX/DirectX3D12Renderer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX3D/DirectX3D12Renderer.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Qt/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Qt/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DWrite/DWrite.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectXWrite/DirectXWrite.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DWrite/DWriteRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectXWrite/DirectXWriteTextRenderer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DWrite/DWriteRenderer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectXWrite/DirectXWriteTextRenderer.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX2D/DirectX2D.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX2D/DirectX2D.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX2D/DirectX2DRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX2D/DirectX2DRenderer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX2D/DirectX2DRenderer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX2D/DirectX2DRenderer.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX3D/DirectX3D12Renderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX3D/DirectX3D12Renderer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX3D/DirectX3D12Renderer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/DirectX3D/DirectX3D12Renderer.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/GLFW/GLFWWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/GLFW/GLFWWindow.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/GLFW/GLFWWindow.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/GLFW/GLFWWindow.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Platform.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Platform.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/OpenGL/OpenGLRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/OpenGL/OpenGLRenderer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/OpenGL/OpenGLRenderer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/OpenGL/OpenGLRenderer.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Platform.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Platform.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/RenderTarget.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/RenderTarget.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Renderer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Renderer.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/RendererFactory.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/RendererFactory.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/RendererFactory.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/RendererFactory.hpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Vulkan/VulkanRenderer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Vulkan/VulkanRenderer.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Vulkan/VulkanRenderer.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Vulkan/VulkanRenderer.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Window.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Window.hpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/WindowsPlatform.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/WindowsPlatform.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/Platform.impl" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/Platform.impl" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/WindowsWindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/WindowsWindow.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/WindowsWindow.hpp" beforeDir="false" afterPath="$PROJECT_DIR$/Anasul/Render/Sources/Anasul/Windows/WindowsWindow.hpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/main.cpp" afterDir="false" />
@@ -69,7 +81,7 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:mingw_x64_debug" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:msvc_x64_x64_debug" />
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
@@ -141,6 +153,7 @@
       <recent name="C:\WorkSpace\Whale\WhaleProject\Language" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\WorkSpace\AnasulProject\Anasul\Core\Sources\Anasul" />
       <recent name="C:\WorkSpace\AnasulProject\Anasul\Core\Sources\Anasul\Windows" />
       <recent name="C:\WorkSpace\AnasulProject\Anasul\Render\Sources\Anasul" />
       <recent name="C:\WorkSpace\Whale\WhaleProject\Language\Sources\Whale" />
@@ -254,7 +267,7 @@
       <workItem from="1724154561742" duration="2112000" />
       <workItem from="1724212075042" duration="17649000" />
       <workItem from="1724312219391" duration="4871000" />
-      <workItem from="1724320124427" duration="16560000" />
+      <workItem from="1724320124427" duration="28416000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -416,7 +429,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724316821713</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="DirectX">
+      <option name="closed" value="true" />
+      <created>1724338921491</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1724338921491</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -470,7 +491,8 @@
     <MESSAGE value="init" />
     <MESSAGE value="Linux" />
     <MESSAGE value="GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="GUI" />
+    <MESSAGE value="DirectX" />
+    <option name="LAST_COMMIT_MESSAGE" value="DirectX" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

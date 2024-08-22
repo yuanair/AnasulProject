@@ -22,18 +22,18 @@ namespace Anasul
 	
 	public:
 		
-		void Init() override;
+		WindowRenderTarget *CreateWindowRenderTarget(const Window &window) override;
 	
 	private:
 		
-		Microsoft::WRL::ComPtr <IDXGIFactory4> m_factory;
-		Microsoft::WRL::ComPtr <IDXGIAdapter1> m_adapter;
-		Microsoft::WRL::ComPtr <IDXGIDevice> m_dxgiDevice;
-		Microsoft::WRL::ComPtr <ID3D12Debug> m_debugController;
-		Microsoft::WRL::ComPtr <ID3D12Device> m_device;
-		Microsoft::WRL::ComPtr <ID3D12CommandQueue> m_commandQueue;
-		Microsoft::WRL::ComPtr <ID3D12CommandAllocator> m_commandAllocator;
-		Microsoft::WRL::ComPtr <ID3D12GraphicsCommandList> m_commandList;
+		Microsoft::WRL::ComPtr<IDXGIFactory4> m_factory;
+		Microsoft::WRL::ComPtr<IDXGIAdapter1> m_adapter;
+		Microsoft::WRL::ComPtr<IDXGIDevice> m_dxgiDevice;
+		Microsoft::WRL::ComPtr<ID3D12Debug> m_debugController;
+		Microsoft::WRL::ComPtr<ID3D12Device> m_device;
+		Microsoft::WRL::ComPtr<ID3D12CommandQueue> m_commandQueue;
+		Microsoft::WRL::ComPtr<ID3D12CommandAllocator> m_commandAllocator;
+		Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> m_commandList;
 		
 	};
 	

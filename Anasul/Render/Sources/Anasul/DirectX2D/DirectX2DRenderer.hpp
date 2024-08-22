@@ -16,11 +16,15 @@ namespace Anasul
 	{
 	public:
 		
-		void Init() override;
+		DirectX2DRenderer();
+	
+	public:
+		
+		WindowRenderTarget *CreateWindowRenderTarget(const Window &window) override;
 	
 	private:
 		
-		Microsoft::WRL::ComPtr <ID2D1Factory> m_factory;
+		Microsoft::WRL::ComPtr<ID2D1Factory> m_factory;
 		
 	};
 	

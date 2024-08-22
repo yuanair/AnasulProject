@@ -6,6 +6,8 @@
 
 #include <Anasul/Config.hpp>
 #include <Anasul/String.hpp>
+#include <Anasul/Logger.hpp>
+#include "Window.hpp"
 
 namespace Anasul
 {
@@ -34,6 +36,15 @@ namespace Anasul
 		
 		/// 获取命令行参数
 		static void GetCommandLine(StringW &commandLine);
+		
+		/// 桌面窗口
+		static Window *DesktopWindow(Logger &logger);
+		
+		/// 查找窗口
+		static Window *FindWindow(Logger &logger, StringViewA title);
+		
+		/// 查找窗口
+		static Window *FindWindow(Logger &logger, StringViewW title);
 		
 		/// 仅在 Windows 平台可用
 		class ANASUL_API OnlyInWindows
@@ -72,6 +83,27 @@ namespace Anasul
 			
 			/// 删除开机启动项
 			static boolean DeleteBootStartUp(StringViewW key);
+			
+			/// 查找窗口类的窗口
+			static Window *FindWindowFromClass(Logger &logger, StringViewA name);
+			
+			/// 查找窗口的窗口
+			static Window *FindWindowFromClass(Logger &logger, StringViewW name);
+			
+			/// 设置窗口句柄
+			static void *GetHWnd(const Window *window);
+			
+			/// 设置父窗口
+			static void SetParent(Window *child, Window *parent);
+			
+			/// 设置父窗口为桌面
+			static void SetParentToDesktop(Window *child);
+			
+			/// 隐藏窗口
+			static void EnumWindowHide();
+			
+			/// 发送消息
+			static void SendMessage(Window *window, u32 message, u32 wParam, u32 lParam);
 			
 			
 		};

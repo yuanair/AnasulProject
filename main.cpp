@@ -11,6 +11,7 @@
 
 #include <Anasul/WindowFactory.hpp>
 #include <Anasul/RendererFactory.hpp>
+#include <Anasul/WindowRenderTarget.hpp>
 
 #include <thread>
 #include <format>
@@ -92,16 +93,37 @@ public:
 		ifs.close();
 		
 		m_window = Anasul::WindowFactory::CreateWindow(Anasul::WindowType::Default, GetLogger());
-		m_renderer = Anasul::RendererFactory::Create(Anasul::RendererType::DirectX2D, GetLogger());
 		
-		m_window->Create("Anasul", 1280, 720);
+		
+		m_renderer = Anasul::RendererFactory::CreateRenderer(Anasul::RendererType::DirectX2D, GetLogger());
+		m_dWriteRenderer = Anasul::RendererFactory::CreateTextRenderer(
+			Anasul::TextRendererType::DirectWrite, GetLogger());
+		
+		if (!m_window->Create({"Anasul", 0, 0, INT_MIN, INT_MIN}))
+		{
+			GetLogger().Log(Anasul::LogLevel::Fatal, TEXT("cannot create window"));
+			Anasul::Application::Exit();
+			return;
+		}
 		m_window->Notify("???");
 		m_window->Show();
+		Anasul::Platform::OnlyInWindows::SetParentToDesktop(m_window.get());
 		
+		m_renderTarget.reset(m_renderer->CreateWindowRenderTarget(*m_window));
+		m_font.reset(m_dWriteRenderer->CreateFont(L"Consolas", 16));
 	}
 	
 	void Tick() override
 	{
+		m_renderTarget->BeginDraw();
+		m_renderTarget->Clear(Anasul::Color4f(0.0f, 0.0f, 0.5f, 1.0f));
+		Anasul::Point2i mousePos;
+		m_window->GetMousePosition(mousePos.x, mousePos.y);
+		m_renderTarget->DrawText(
+			*m_font,
+			"Hello Anasul", Anasul::Rect4f(mousePos.x, mousePos.y, 100.0f, 100.0f),
+			Anasul::Color4f(1.0f, 1.0f, 1.0f, 1.0f));
+		m_renderTarget->EndDraw();
 		m_window->Update();
 	}
 	
@@ -115,6 +137,9 @@ private:
 	
 	std::unique_ptr<Anasul::Window> m_window;
 	std::unique_ptr<Anasul::Renderer> m_renderer;
+	std::unique_ptr<Anasul::TextRenderer> m_dWriteRenderer;
+	std::unique_ptr<Anasul::WindowRenderTarget> m_renderTarget;
+	std::unique_ptr<Anasul::Font> m_font;
 	
 };
 

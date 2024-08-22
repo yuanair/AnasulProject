@@ -16,8 +16,8 @@ namespace Anasul
 	
 	}
 	
-	void DirectX3D12Renderer::Init()
+	WindowRenderTarget *DirectX3D12Renderer::CreateWindowRenderTarget(const Window &window)
 	{
-	
+		return nullptr;
 	}
 } // Anasul
