@@ -4,6 +4,8 @@
 
 #include "GLFWWindow.hpp"
 
+#include <Anasul/Conv.hpp>
+
 namespace Anasul
 {
 	boolean GLFWWindow::InitGLFW()
@@ -23,23 +25,48 @@ namespace Anasul
 		glfwTerminate();
 	}
 	
-	void GLFWWindow::Create(StringViewA title, i32 width, i32 height)
+	boolean GLFWWindow::Create(StringViewA title, i32 width, i32 height)
 	{
-		if (!glfwInit()) return;
+		if (!glfwInit()) return false;
 		m_window = glfwCreateWindow(width, height, title.data(), nullptr, nullptr);
 		
 		glfwMakeContextCurrent(m_window);
+		return IsOpen();
 	}
 	
-	void GLFWWindow::Update()
+	boolean GLFWWindow::Create(StringViewW title, i32 width, i32 height)
+	{
+		if (!glfwInit()) return false;
+		m_window = glfwCreateWindow(width, height, Conv::WToA(title).data(), nullptr, nullptr);
+		
+		glfwMakeContextCurrent(m_window);
+		return IsOpen();
+	}
+	
+	boolean GLFWWindow::Show()
+	{
+		glfwShowWindow(m_window);
+		return true;
+	}
+	
+	boolean GLFWWindow::Hide()
+	{
+		glfwHideWindow(m_window);
+		return true;
+	}
+	
+	boolean GLFWWindow::Update()
 	{
 		glfwSwapBuffers(m_window);
 		glfwPollEvents();
+		return IsOpen();
 	}
 	
-	void GLFWWindow::Close()
+	boolean GLFWWindow::Close()
 	{
 		glfwDestroyWindow(m_window);
+		m_window = nullptr;
+		return true;
 	}
 	
 	boolean GLFWWindow::IsOpen() const
@@ -47,34 +74,52 @@ namespace Anasul
 		return m_window != nullptr;
 	}
 	
-	void GLFWWindow::SetTitle(StringViewA title)
+	boolean GLFWWindow::SetTitle(StringViewA title)
 	{
 		glfwSetWindowTitle(m_window, title.data());
+		return true;
 	}
 	
-	void GLFWWindow::SetSize(i32 width, i32 height)
+	boolean GLFWWindow::SetTitle(StringViewW title)
+	{
+		glfwSetWindowTitle(m_window, Conv::WToA(title).data());
+		return true;
+	}
+	
+	boolean GLFWWindow::SetSize(i32 width, i32 height)
 	{
 		glfwSetWindowSize(m_window, width, height);
+		return true;
 	}
 	
-	void GLFWWindow::SetPosition(i32 x, i32 y)
+	boolean GLFWWindow::SetPosition(i32 x, i32 y)
 	{
 		glfwSetWindowPos(m_window, x, y);
+		return true;
 	}
 	
-	void GLFWWindow::GetTitle(StringViewA &title)
+	boolean GLFWWindow::GetTitle(StringA &title) const
 	{
 		title = glfwGetWindowTitle(m_window);
+		return true;
 	}
 	
-	void GLFWWindow::GetSize(i32 &width, i32 &height)
+	boolean GLFWWindow::GetTitle(StringW &title) const
+	{
+		title = Conv::AToW(glfwGetWindowTitle(m_window));
+		return true;
+	}
+	
+	boolean GLFWWindow::GetSize(i32 &width, i32 &height) const
 	{
 		glfwGetWindowSize(m_window, &width, &height);
+		return true;
 	}
 	
-	void GLFWWindow::GetPosition(i32 &x, i32 &y)
+	boolean GLFWWindow::GetPosition(i32 &x, i32 &y) const
 	{
 		glfwGetWindowPos(m_window, &x, &y);
+		return true;
 	}
 	
 	boolean GLFWWindow::PrivateInitGLFW()
@@ -84,5 +129,15 @@ namespace Anasul
 		glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 		glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 		return result == GLFW_TRUE;
+	}
+	
+	boolean GLFWWindow::Notify(StringViewA title)
+	{
+		return false;
+	}
+	
+	boolean GLFWWindow::Notify(StringViewW title)
+	{
+		return false;
 	}
 } // Anasul

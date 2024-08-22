@@ -3,7 +3,18 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-set(CMAKE_PREFIX_PATH "C:/Qt/6.7.2/mingw_64")
+if (${CMAKE_CXX_COMPILER_ID} STREQUAL GNU)
+    set(CMAKE_PREFIX_PATH "C:/Qt/6.7.2/mingw_64")
+    message(WARNING "compiler: mingw_64")
+elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL Clang)
+    set(CMAKE_PREFIX_PATH "C:/Qt/6.7.2/llvm-mingw_64")
+    message(WARNING "compiler: llvm-mingw_64")
+elseif (${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
+    set(CMAKE_PREFIX_PATH "C:/Qt/6.7.2/msvc2019_64")
+    message(WARNING "compiler: msvc2019_64")
+else ()
+    message(FATAL_ERROR "Unsupported compiler: ${CMAKE_CXX_COMPILER_ID}")
+endif ()
 
 find_package(Qt6 COMPONENTS
         Core
@@ -15,14 +26,15 @@ set(ModelName "${PROJECT_NAME}Qt")
 
 file(GLOB_RECURSE SOURCES "Sources/*.hpp" "Sources/*.cpp")
 
-add_library(${ModelName} SHARED ${SOURCES})
+add_library(${ModelName} STATIC ${SOURCES})
 
 target_include_directories(${ModelName} PUBLIC "./Sources")
 
-target_link_libraries(${ModelName} PUBLIC "${PROJECT_NAME}Core"
-        Qt::Core
-        Qt::Gui
-        Qt::Widgets)
+target_link_libraries(${ModelName}
+        PUBLIC "${PROJECT_NAME}Core"
+        PUBLIC Qt::Core
+        PUBLIC Qt::Gui
+        PUBLIC Qt::Widgets)
 
 add_custom_command(TARGET ${ModelName}
         COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different "${CMAKE_CURRENT_SOURCE_DIR}/Resources" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Data"

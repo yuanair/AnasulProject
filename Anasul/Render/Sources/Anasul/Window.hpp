@@ -15,29 +15,53 @@ namespace Anasul
 	{
 	public:
 		
+		Window() = default;
+		
 		virtual ~Window() = default;
 	
 	public:
 		
-		virtual void Create(StringViewA title, i32 width, i32 height) = 0;
+		virtual i32 IsDarkMode() const = 0;
 		
-		virtual void Update() = 0;
+		virtual boolean Create(StringViewA title, i32 width, i32 height) = 0;
 		
-		virtual void Close() = 0;
+		virtual boolean Create(StringViewW title, i32 width, i32 height) = 0;
+		
+		virtual boolean Update() = 0;
+		
+		virtual boolean Show() = 0;
+		
+		virtual boolean Hide() = 0;
+		
+		virtual boolean Notify(StringViewA tip) = 0;
+		
+		virtual boolean Notify(StringViewW tip) = 0;
+		
+		virtual boolean Close() = 0;
 		
 		[[nodiscard]] virtual boolean IsOpen() const = 0;
+	
+	public:
 		
-		virtual void SetTitle(StringViewA title) = 0;
+		virtual boolean SetTitle(StringViewA title) = 0;
 		
-		virtual void SetSize(i32 width, i32 height) = 0;
+		virtual boolean SetTitle(StringViewW title) = 0;
 		
-		virtual void SetPosition(i32 x, i32 y) = 0;
+		virtual boolean SetSize(i32 width, i32 height) = 0;
 		
-		virtual void GetTitle(StringViewA &title) = 0;
+		virtual boolean SetPosition(i32 x, i32 y) = 0;
 		
-		virtual void GetSize(i32 &width, i32 &height) = 0;
+		virtual boolean SetInputPosition(i32 x, i32 y) = 0;
 		
-		virtual void GetPosition(i32 &x, i32 &y) = 0;
+		virtual boolean GetTitle(StringA &title) const = 0;
+		
+		virtual boolean GetTitle(StringW &title) const = 0;
+		
+		virtual boolean GetSize(i32 &width, i32 &height) const = 0;
+		
+		virtual boolean GetPosition(i32 &x, i32 &y) const = 0;
+		
+		virtual boolean GetInputPosition(i32 &x, i32 &y) const = 0;
 		
 	};
 	

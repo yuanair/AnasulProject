@@ -9,7 +9,9 @@ target_include_directories(${ModelName} PUBLIC "./Sources" PUBLIC "${PROJECT_SOU
 
 target_link_libraries(${ModelName} PUBLIC "${PROJECT_NAME}Core" PUBLIC GLAD
         PUBLIC "${PROJECT_SOURCE_DIR}/glfw/lib-vc2022/glfw3dll.lib"
-        PUBLIC opengl32.lib)
+        PUBLIC opengl32.lib
+        PUBLIC Dwmapi.lib
+        PUBLIC imm32.lib)
 
 add_custom_command(TARGET ${ModelName}
         COMMAND ${CMAKE_COMMAND} -E copy_directory_if_different "${CMAKE_CURRENT_SOURCE_DIR}/Resources" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/Data"

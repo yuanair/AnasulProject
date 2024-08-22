@@ -3,7 +3,7 @@ set(ModelName "${PROJECT_NAME}Core")
 
 file(GLOB_RECURSE SOURCES "Sources/*.hpp" "Sources/*.cpp")
 
-add_library(${ModelName} SHARED ${SOURCES})
+add_library(${ModelName} STATIC ${SOURCES})
 
 target_include_directories(${ModelName} PUBLIC "./Sources")
 

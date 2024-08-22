@@ -79,4 +79,23 @@ namespace Anasul
 		
 	};
 	
+	/// 可以使用日志的
+	class ANASUL_API Logable
+	{
+	public:
+		
+		explicit Logable(Logger &mLogger) : m_logger(mLogger) {}
+		
+		virtual ~Logable() = default;
+	
+	public:
+		
+		[[nodiscard]] Logger &GetLogger() const { return m_logger; }
+	
+	private:
+		
+		Logger &m_logger;
+		
+	};
+	
 } // Anasul

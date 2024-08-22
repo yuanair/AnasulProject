@@ -11,6 +11,7 @@
 #include <DirectXMath.h>
 #include <d3d12.h>
 #include <dxgi1_6.h>
+#include <d3d12sdklayers.h>
 
 namespace Anasul
 {
@@ -30,14 +31,14 @@ namespace Anasul
 	
 	private:
 		
-		Microsoft::WRL::ComPtr<IDXGIFactory4> m_factory;
-		Microsoft::WRL::ComPtr<IDXGIAdapter1> m_adapter;
-		Microsoft::WRL::ComPtr<IDXGIDevice> m_dxgiDevice;
-		Microsoft::WRL::ComPtr<ID3D12Debug> m_debugController;
-		Microsoft::WRL::ComPtr<ID3D12Device> m_device;
-		Microsoft::WRL::ComPtr<ID3D12CommandQueue> m_commandQueue;
-		Microsoft::WRL::ComPtr<ID3D12CommandAllocator> m_commandAllocator;
-		Microsoft::WRL::ComPtr<ID3D12GraphicsCommandList> m_commandList;
+		Microsoft::WRL::ComPtr <IDXGIFactory4> m_factory;
+		Microsoft::WRL::ComPtr <IDXGIAdapter1> m_adapter;
+		Microsoft::WRL::ComPtr <IDXGIDevice> m_dxgiDevice;
+		Microsoft::WRL::ComPtr <ID3D12Debug> m_debugController;
+		Microsoft::WRL::ComPtr <ID3D12Device> m_device;
+		Microsoft::WRL::ComPtr <ID3D12CommandQueue> m_commandQueue;
+		Microsoft::WRL::ComPtr <ID3D12CommandAllocator> m_commandAllocator;
+		Microsoft::WRL::ComPtr <ID3D12GraphicsCommandList> m_commandList;
 		
 	};
 	

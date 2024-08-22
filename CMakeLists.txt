@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.27)
 project(Anasul)
 
 set(CMAKE_CXX_STANDARD 20)
+set(CXX_STANDARD_REQUIRED ON)
 
 if (${CMAKE_BUILD_TYPE} STREQUAL "Debug")
     add_definitions(-DDEBUG -D_DEBUG)
@@ -13,6 +14,11 @@ elseif (${CMAKE_BUILD_TYPE} STREQUAL "RelWithDebInfo")
 
 else ()
     message(FATAL_ERROR "CMAKE_BUILD_TYPE is unknown")
+endif ()
+
+# /Zc:__cplusplus
+if (${CMAKE_CXX_COMPILER_ID} STREQUAL MSVC)
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} /Zc:__cplusplus")
 endif ()
 
 # Wall

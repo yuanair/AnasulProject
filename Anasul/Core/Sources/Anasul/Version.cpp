@@ -4,8 +4,6 @@
 
 #include "Version.hpp"
 
-#include "Platform.hpp"
-
 #include <format>
 
 namespace Anasul
@@ -68,12 +66,12 @@ namespace Anasul
 	StringA GetVersionA()
 	{
 		return std::format(
-			"{}_v{}.{}.{}_{}", Platform::GetPlatformNameA(), GetMajor(), GetMinor(), GetPatch(), GetGreekAlphabetA());
+			"v{}.{}.{}_{}", GetMajor(), GetMinor(), GetPatch(), GetGreekAlphabetA());
 	}
 	
 	StringW GetVersionW()
 	{
 		return std::format(
-			L"{}_v{}.{}.{}_{}", Platform::GetPlatformNameW(), GetMajor(), GetMinor(), GetPatch(), GetGreekAlphabetW());
+			L"v{}.{}.{}_{}", GetMajor(), GetMinor(), GetPatch(), GetGreekAlphabetW());
 	}
 } // Anasul

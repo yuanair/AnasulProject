@@ -5,6 +5,7 @@
 #pragma once
 
 #include <Anasul/Config.hpp>
+#include <Anasul/Platform.hpp>
 
 #include "../Window.hpp"
 
@@ -28,25 +29,45 @@ namespace Anasul
 	
 	public:
 		
-		void Create(StringViewA title, i32 width, i32 height) override;
+		[[nodiscard]] i32 IsDarkMode() const override { return Platform::Get().DarkMode();; }
 		
-		void Update() override;
+		boolean Create(StringViewA title, i32 width, i32 height) override;
 		
-		void Close() override;
+		boolean Create(StringViewW title, i32 width, i32 height) override;
+		
+		boolean Update() override;
+		
+		boolean Show() override;
+		
+		boolean Hide() override;
+		
+		boolean Close() override;
 		
 		[[nodiscard]] boolean IsOpen() const override;
 		
-		void SetTitle(StringViewA title) override;
+		boolean SetTitle(StringViewA title) override;
 		
-		void SetSize(i32 width, i32 height) override;
+		boolean SetTitle(StringViewW title) override;
 		
-		void SetPosition(i32 x, i32 y) override;
+		boolean SetSize(i32 width, i32 height) override;
 		
-		void GetTitle(StringViewA &title) override;
+		boolean SetPosition(i32 x, i32 y) override;
 		
-		void GetSize(i32 &width, i32 &height) override;
+		boolean SetInputPosition(i32 x, i32 y) override { return false; }
 		
-		void GetPosition(i32 &x, i32 &y) override;
+		boolean GetTitle(StringA &title) const override;
+		
+		boolean GetTitle(StringW &title) const override;
+		
+		boolean GetSize(i32 &width, i32 &height) const override;
+		
+		boolean GetPosition(i32 &x, i32 &y) const override;
+		
+		boolean GetInputPosition(i32 &x, i32 &y) const override { return false; }
+		
+		boolean Notify(StringViewA title) override;
+		
+		boolean Notify(StringViewW title) override;
 	
 	private:
 		

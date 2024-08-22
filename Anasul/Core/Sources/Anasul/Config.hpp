@@ -5,6 +5,11 @@
 #pragma once
 
 #include <cstdint>
+#include <tchar.h>
+
+#if defined(TEXT)
+	#undef TEXT
+#endif
 
 #if defined(_WIN32)
 	#define ANASUL_TARGET_WINDOWS

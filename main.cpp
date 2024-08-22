@@ -22,6 +22,20 @@ class MyProgram : public Anasul::Program
 {
 public:
 	
+	template<typename ElemT>
+	std::basic_ifstream<ElemT> Open(const std::filesystem::path &path)
+	{
+		std::basic_ifstream<ElemT> ifs{path};
+		if (!ifs.is_open())
+		{
+			GetLogger().Log(
+				Anasul::LogLevel::Fatal,
+				std::format("cannot open file \"{}\"", (path).string())
+			);
+		}
+		return ifs;
+	}
+	
 	Anasul::Logger &GetLogger() override
 	{
 		static Anasul::LoggerFormatterSimple loggerFormatterSimple{};
@@ -31,17 +45,15 @@ public:
 	
 	void BeginPlay() override
 	{
-		GetLogger().Log(Anasul::LogLevel::Info, std::format("{} {}", Anasul::GetNameA(), Anasul::GetVersionA()));
-		GetLogger().Log(Anasul::LogLevel::Info, std::format(": {}", Anasul::Type::eof));
-		GetLogger().Flush();
 		
 		std::filesystem::current_path(std::filesystem::current_path() / "Data");
 		
-		std::basic_ifstream<Anasul::chararcter> ifs{"./test.anasul"};
+		std::basic_ifstream<Anasul::chararcter> ifs{
+			Open<Anasul::chararcter>(std::filesystem::current_path() / "test.anasul")
+		};
 		
 		if (!ifs.is_open())
 		{
-			GetLogger().Log(Anasul::LogLevel::Fatal, "cannot open file");
 			Anasul::Application::Exit();
 			return;
 		}
@@ -57,10 +69,12 @@ public:
 		
 		ifs.close();
 		
-		m_window = Anasul::WindowFactory::CreateWindow(Anasul::WindowType::GLFW);
-		m_renderer = Anasul::RendererFactory::Create(Anasul::RendererType::OpenGL);
+		m_window = Anasul::WindowFactory::CreateWindow(Anasul::WindowType::Default, GetLogger());
+		m_renderer = Anasul::RendererFactory::Create(Anasul::RendererType::OpenGL, GetLogger());
 		
 		m_window->Create("Anasul", 1280, 720);
+		m_window->Notify("???");
+		m_window->Show();
 		
 	}
 	
@@ -73,8 +87,6 @@ public:
 	{
 		m_window.reset();
 		m_renderer.reset();
-		GetLogger().Log(Anasul::LogLevel::Info, "EndPlay");
-		GetLogger().Flush();
 	}
 
 private:

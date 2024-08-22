@@ -10,8 +10,9 @@
 
 namespace Anasul
 {
-	std::unique_ptr<Renderer> RendererFactory::Create(RendererType type)
+	std::unique_ptr<Renderer> RendererFactory::Create(RendererType type, Logger &logger)
 	{
+		logger.Log(LogLevel::Info, "Creating renderer of type: " + std::to_string(static_cast<int>(type)));
 		switch (type)
 		{
 			case RendererType::DirectX3D12:

@@ -16,7 +16,7 @@ namespace Anasul
 	public:
 		
 		/// 运行程序
-		static i32 Run(Program &program);
+		static i32 Run();
 		
 		/// 退出
 		static void Exit();
