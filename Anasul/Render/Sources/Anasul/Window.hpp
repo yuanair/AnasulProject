@@ -11,6 +11,8 @@
 namespace Anasul
 {
 	
+	class Icon;
+	
 	/// 键盘按键
 	enum Key : i32
 	{
@@ -182,17 +184,21 @@ namespace Anasul
 	{
 	public:
 		
-		using StringT = BasicString<ElemT>;
+		using StringViewT = BasicStringView<ElemT>;
 	
 	public:
 		
-		StringT m_title;
+		StringViewT m_title;
 		i32 m_x = 0;
 		i32 m_y = 0;
 		i32 m_width = 400;
 		i32 m_height = 300;
+		Icon *m_icon = nullptr;
+		Icon *m_iconSm = nullptr;
 		
 		class Window *m_parent = nullptr;
+		
+		boolean m_isFrameless = false;
 		
 	};
 	
@@ -217,9 +223,9 @@ namespace Anasul
 		
 		virtual boolean Hide() = 0;
 		
-		virtual boolean Notify(StringViewA tip) = 0;
+		virtual boolean Notify(StringViewA tip, Icon *icon) = 0;
 		
-		virtual boolean Notify(StringViewW tip) = 0;
+		virtual boolean Notify(StringViewW tip, Icon *icon) = 0;
 		
 		virtual boolean Close() = 0;
 	

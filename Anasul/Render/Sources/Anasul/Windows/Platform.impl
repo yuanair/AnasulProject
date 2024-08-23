@@ -3,8 +3,9 @@
 //
 
 #include <Anasul/Windows/Windows.hpp>
-#include <Anasul/GLFW/GLFWWindow.hpp>
+#include "../GLFW/GLFWWindow.hpp"
 #include "WindowsWindow.hpp"
+#include "WindowsIcon.hpp"
 
 namespace Anasul
 {
@@ -70,12 +71,115 @@ namespace Anasul
 		return window;
 	}
 	
+	void
+	Platform::FatalExit(Logger &logger, StringViewA message, StringViewA caption, std::source_location sourceLocation)
+	{
+		FatalExit(logger, nullptr, message, caption, sourceLocation);
+	}
+	
+	void
+	Platform::FatalExit(Logger &logger, StringViewW message, StringViewW caption, std::source_location sourceLocation)
+	{
+		FatalExit(logger, nullptr, message, caption, sourceLocation);
+	}
+	
+	void
+	Platform::FatalExit(Logger &logger, Window *window, StringViewA message, std::source_location sourceLocation)
+	{
+		StringA title, buffer;
+		if (window == nullptr)
+		{
+			buffer = std::format("FatalExit[window: nullptr, message: {}]", message);
+		}
+		else
+		{
+			window->GetTitle(title);
+			buffer = std::format("FatalExit[window, caption: {}, message: {}]", title, message);
+		}
+		logger.Log(LogLevel::Fatal, buffer, sourceLocation);
+		OnlyInWindows::MessageBox(window, message, title, OnlyInWindows::MessageBoxTypeIconError);
+		::PostQuitMessage(0);
+	}
+	
+	void
+	Platform::FatalExit(Logger &logger, Window *window, StringViewW message, std::source_location sourceLocation)
+	{
+		StringW title, buffer;
+		if (window == nullptr)
+		{
+			buffer = std::format(L"FatalExit[window: nullptr, message: {}]", message);
+		}
+		else
+		{
+			window->GetTitle(title);
+			buffer = std::format(L"FatalExit[window, caption: {}, message: {}]", title, message);
+		}
+		logger.Log(LogLevel::Fatal, buffer, sourceLocation);
+		OnlyInWindows::MessageBox(window, message, title, OnlyInWindows::MessageBoxTypeIconError);
+		::PostQuitMessage(0);
+	}
+	
+	void Platform::FatalExit(Logger &logger, Window *window, StringViewA message, StringViewA caption,
+	                         std::source_location sourceLocation)
+	{
+		StringA title, buffer;
+		if (window == nullptr)
+		{
+			buffer = std::format("FatalExit[caption: {}, message: {}]", caption, message);
+		}
+		else
+		{
+			window->GetTitle(title);
+			buffer = std::format("FatalExit[window:{}, caption: {}, message: {}]", title, caption, message);
+		}
+		logger.Log(LogLevel::Fatal, buffer, sourceLocation);
+		OnlyInWindows::MessageBox(window, message, caption, OnlyInWindows::MessageBoxTypeIconError);
+		::PostQuitMessage(0);
+	}
+	
+	void Platform::FatalExit(Logger &logger, Window *window, StringViewW message, StringViewW caption,
+	                         std::source_location sourceLocation)
+	{
+		StringW title, buffer;
+		if (window == nullptr)
+		{
+			buffer = std::format(L"FatalExit[caption: {}, message: {}]", caption, message);
+		}
+		else
+		{
+			window->GetTitle(title);
+			buffer = std::format(L"FatalExit[window:{}, caption: {}, message: {}]", title, caption, message);
+		}
+		logger.Log(LogLevel::Fatal, buffer, sourceLocation);
+		OnlyInWindows::MessageBox(window, message, caption, OnlyInWindows::MessageBoxTypeIconError);
+		::PostQuitMessage(0);
+	}
 	
 	Window *Platform::FindWindow(Logger &logger, StringViewW title)
 	{
 		auto *window = new WindowsWindow(logger);
 		window->SetHWnd(::FindWindowW(nullptr, title.data()));
 		return window;
+	}
+	
+	void Platform::OnlyInWindows::MessageBox(StringViewA text, StringViewA caption)
+	{
+		MessageBox(nullptr, text.data(), caption.data(), MessageBoxTypeOk);
+	}
+	
+	void Platform::OnlyInWindows::MessageBox(StringViewW text, StringViewW caption)
+	{
+		MessageBox(nullptr, text.data(), caption.data(), MessageBoxTypeOk);
+	}
+	
+	i32 Platform::OnlyInWindows::MessageBox(Window *window, StringViewA text, StringViewA caption, MessageBoxType type)
+	{
+		return ::MessageBoxA((HWND) GetHWnd(window), text.data(), caption.data(), type);
+	}
+	
+	i32 Platform::OnlyInWindows::MessageBox(Window *window, StringViewW text, StringViewW caption, MessageBoxType type)
+	{
+		return ::MessageBoxW((HWND) GetHWnd(window), text.data(), caption.data(), type);
 	}
 	
 	boolean Platform::OnlyInWindows::ReadFromRegedit(Key hKey, StringViewW subKey, StringViewW subKeyValue, u32 &value)
@@ -175,9 +279,44 @@ namespace Anasul
 		return window;
 	}
 	
+	void *Platform::OnlyInWindows::LoadIcon(StringViewA name)
+	{
+		return ::LoadImageA(GetModuleHandleA(nullptr), name.data(), IMAGE_ICON, 0, 0, LR_DEFAULTSIZE | LR_LOADFROMFILE);
+	}
+	
+	void *Platform::OnlyInWindows::LoadIcon(StringViewW name)
+	{
+		return ::LoadImageW(GetModuleHandleW(nullptr), name.data(), IMAGE_ICON, 0, 0, LR_DEFAULTSIZE | LR_LOADFROMFILE);
+	}
+	
+	boolean Platform::OnlyInWindows::DestroyIcon(void *icon)
+	{
+		return ::DestroyIcon((HICON) icon) == TRUE;
+	}
+	
+	void *Platform::OnlyInWindows::LoadCursor(StringViewA name)
+	{
+		return ::LoadImageA(
+			GetModuleHandleA(nullptr), name.data(), IMAGE_CURSOR, 0, 0, LR_DEFAULTSIZE | LR_LOADFROMFILE
+		);
+	}
+	
+	void *Platform::OnlyInWindows::LoadCursor(StringViewW name)
+	{
+		return ::LoadImageW(
+			GetModuleHandleW(nullptr), name.data(), IMAGE_CURSOR, 0, 0, LR_DEFAULTSIZE | LR_LOADFROMFILE
+		);
+	}
+	
+	boolean Platform::OnlyInWindows::DestroyCursor(void *cursor)
+	{
+		return ::DestroyCursor((HCURSOR) cursor) == TRUE;
+	}
+	
 	
 	void *Platform::OnlyInWindows::GetHWnd(const Window *window)
 	{
+		if (window == nullptr) return nullptr;
 		if (auto *pWindowsWindow = dynamic_cast<const WindowsWindow *>(window))
 		{
 			return pWindowsWindow->GetHWnd();
@@ -192,15 +331,42 @@ namespace Anasul
 		}
 	}
 	
+	void *Platform::OnlyInWindows::GetHIcon(const Icon *icon)
+	{
+		if (icon == nullptr) return nullptr;
+		if (auto *pWindowsIcon = dynamic_cast<const WindowsIcon *>(icon))
+		{
+			return pWindowsIcon->GetHandle();
+		}
+		else
+		{
+			return nullptr;
+		}
+	}
+	
 	void Platform::OnlyInWindows::SetParent(Window *child, Window *parent)
 	{
 		::SetParent((HWND) GetHWnd(child), (HWND) GetHWnd(parent));
 	}
 	
-	void Platform::OnlyInWindows::SetParentToDesktop(Anasul::Window *child)
+	boolean Platform::OnlyInWindows::IsAeroEnabled()
 	{
-		::SetParent((HWND) GetHWnd(child), ::FindWindowA("Progman", nullptr));
-		Anasul::Platform::OnlyInWindows::EnumWindowHide();
+		BOOL result = FALSE;
+		if (::DwmIsCompositionEnabled(&result) == S_OK)
+		{
+			return result;
+		}
+		return false;
+	}
+	
+	void Platform::OnlyInWindows::RenderToDesktop(Anasul::Window *child)
+	{
+		HWND hWndShlMain = ::FindWindowA("Progman", nullptr);
+		::SendMessageA(hWndShlMain, 0x052C, 0xD, 0);
+		::SendMessageA(hWndShlMain, 0x052C, 0xD, 1);
+		::SetParent((HWND) GetHWnd(child), hWndShlMain);
+		::ShowWindow((HWND) GetHWnd(child), SW_MAXIMIZE);
+		Anasul::Platform::OnlyInWindows::EnumWindowHideWorkerW();
 	}
 	
 	BOOL CALLBACK EnumWinProc(HWND hwnd, LPARAM lParam)
@@ -215,7 +381,7 @@ namespace Anasul
 		return TRUE;
 	}
 	
-	void Platform::OnlyInWindows::EnumWindowHide()
+	void Platform::OnlyInWindows::EnumWindowHideWorkerW()
 	{
 		::EnumWindows(EnumWinProc, 0);
 	}

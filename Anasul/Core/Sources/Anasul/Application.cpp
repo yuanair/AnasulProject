@@ -4,7 +4,6 @@
 
 #include "Application.hpp"
 #include "Windows/Windows.hpp"
-#include "Main.hpp"
 #include "Version.hpp"
 #include "Logger.hpp"
 
@@ -15,10 +14,9 @@ namespace Anasul
 	
 	#ifdef _WIN32
 	
-	i32 Application::Run()
+	i32 Application::Run(Program &program)
 	{
 		::MSG msg;
-		Program &program = AnasulMain();
 		program.GetLogger().Log(
 			Anasul::LogLevel::Info, std::format("{} {}", Anasul::GetNameA(), Anasul::GetVersionA()));
 		program.GetLogger().Log(Anasul::LogLevel::Info, "BeginPlay()");

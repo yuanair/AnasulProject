@@ -13,19 +13,14 @@
 #define DWMWA_USE_IMMERSIVE_DARK_MODE 20
 #endif
 
-
-#ifdef GetCommandLine
+#undef CreateWindow
 #undef GetCommandLine
-#endif
-
-#ifdef GetModuleHandle
 #undef GetModuleHandle
-#endif
-
-#ifdef FindWindow
 #undef FindWindow
-#endif
-
-#ifdef SendMessage
 #undef SendMessage
-#endif
+#undef PostMessage
+#undef MessageBox
+#undef LoadLibrary
+#undef LoadIcon
+#undef LoadCursor
+#undef LoadImage

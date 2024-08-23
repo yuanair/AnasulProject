@@ -28,11 +28,11 @@ namespace Anasul
 		virtual void Clear(const Color4f &color) = 0;
 		
 		/// 绘制文字
-		virtual void DrawText(const Font &font,
+		virtual void DrawText(const Font *font,
 		                      const StringA &text, const Rect4f &rect, const Color4f &color) = 0;
 		
 		/// 绘制文字
-		virtual void DrawText(const Font &font,
+		virtual void DrawText(const Font *font,
 		                      const StringW &text, const Rect4f &rect, const Color4f &color) = 0;
 		
 		/// 结束绘制

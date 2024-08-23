@@ -145,12 +145,12 @@ namespace Anasul
 		return result == GLFW_TRUE;
 	}
 	
-	boolean GLFWWindow::Notify(StringViewA title)
+	boolean GLFWWindow::Notify(StringViewA title, Icon *icon)
 	{
 		return false;
 	}
 	
-	boolean GLFWWindow::Notify(StringViewW title)
+	boolean GLFWWindow::Notify(StringViewW title, Icon *icon)
 	{
 		return false;
 	}

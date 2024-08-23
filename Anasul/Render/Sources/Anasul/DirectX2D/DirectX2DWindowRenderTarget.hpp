@@ -20,17 +20,17 @@ namespace Anasul
 		
 		void Clear(const Color4f &color) override;
 		
-		void DrawText(const Font &font, const StringA &text, const Rect4f &rect,
+		void DrawText(const Font *font, const StringA &text, const Rect4f &rect,
 		              const Color4f &color) override;
 		
-		void DrawText(const Font &font, const StringW &text, const Rect4f &rect,
+		void DrawText(const Font *font, const StringW &text, const Rect4f &rect,
 		              const Color4f &color) override;
 		
 		void EndDraw() override;
 	
 	public:
 		
-		Microsoft::WRL::ComPtr<ID2D1HwndRenderTarget> m_pRenderTarget;
+		Microsoft::WRL::ComPtr <ID2D1HwndRenderTarget> m_pRenderTarget;
 		
 	};
 	

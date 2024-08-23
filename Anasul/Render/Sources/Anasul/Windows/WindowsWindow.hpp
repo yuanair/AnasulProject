@@ -23,15 +23,25 @@ namespace Anasul
 	
 	public:
 		
-		static LPSTR GetDefaultWindowClassA();
+		static LPSTR RegisterDefaultWindowClassA(Icon *icon, Icon *iconSm);
 		
-		static LPWSTR GetDefaultWindowClassW();
+		static LPWSTR RegisterDefaultWindowClassW(Icon *icon, Icon *iconSm);
 		
-		static ATOM RegisterWindowClass(StringViewA className, WNDPROC wndProc, HICON icon, HCURSOR cursor);
+		static ATOM
+		RegisterWindowClass(StringViewA className, WNDPROC wndProc, HICON icon, HICON iconSm, HCURSOR cursor);
 		
-		static ATOM RegisterWindowClass(StringViewW className, WNDPROC wndProc, HICON icon, HCURSOR cursor);
+		static ATOM
+		RegisterWindowClass(StringViewW className, WNDPROC wndProc, HICON icon, HICON iconSm, HCURSOR cursor);
 	
 	public:
+		
+		template<typename T>
+		DWORD CreateStyle(const WindowCreateArgs<T> &args)
+		{
+			DWORD style = args.m_parent ? WS_CHILD | WS_MAXIMIZE : 0;
+			style |= args.m_isFrameless ? WS_POPUP : WS_OVERLAPPEDWINDOW;
+			return style;
+		}
 		
 		boolean Create(const WindowCreateArgs<c8> &args) override;
 		
@@ -43,9 +53,9 @@ namespace Anasul
 		
 		boolean Hide() override;
 		
-		boolean Notify(StringViewA tip) override;
+		boolean Notify(StringViewA tip, Icon *icon) override;
 		
-		boolean Notify(StringViewW tip) override;
+		boolean Notify(StringViewW tip, Icon *icon) override;
 		
 		boolean Close() override;
 		

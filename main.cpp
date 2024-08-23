@@ -99,15 +99,24 @@ public:
 		m_dWriteRenderer = Anasul::RendererFactory::CreateTextRenderer(
 			Anasul::TextRendererType::DirectWrite, GetLogger());
 		
-		if (!m_window->Create({"Anasul", 0, 0, INT_MIN, INT_MIN}))
+		if (!m_window->Create(
+			{"Anasul", 0, 0, INT_MIN, INT_MIN, nullptr, true}
+		))
 		{
 			GetLogger().Log(Anasul::LogLevel::Fatal, TEXT("cannot create window"));
 			Anasul::Application::Exit();
 			return;
 		}
+		if (!Anasul::Platform::OnlyInWindows::IsAeroEnabled())
+		{
+			GetLogger().Log(Anasul::LogLevel::Fatal, TEXT("Aero is not enabled"));
+			Anasul::Application::Exit();
+			return;
+		}
+		// Anasul::Platform::OnlyInWindows::RenderToDesktop(m_window.get());
+		
 		m_window->Notify("???");
 		m_window->Show();
-		Anasul::Platform::OnlyInWindows::SetParentToDesktop(m_window.get());
 		
 		m_renderTarget.reset(m_renderer->CreateWindowRenderTarget(*m_window));
 		m_font.reset(m_dWriteRenderer->CreateFont(L"Consolas", 16));

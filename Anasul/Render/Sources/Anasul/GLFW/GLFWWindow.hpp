@@ -73,9 +73,9 @@ namespace Anasul
 		
 		boolean GetInputPosition(i32 &x, i32 &y) const override { return false; }
 		
-		boolean Notify(StringViewA title) override;
+		boolean Notify(StringViewA title, Icon *icon) override;
 		
-		boolean Notify(StringViewW title) override;
+		boolean Notify(StringViewW title, Icon *icon) override;
 		
 		[[nodiscard]] boolean IsOpen() const override;
 		

@@ -46,6 +46,30 @@ namespace Anasul
 		/// 查找窗口
 		static Window *FindWindow(Logger &logger, StringViewW title);
 		
+		/// 致命错误退出程序
+		static void FatalExit(Logger &logger, StringViewA message, StringViewA caption,
+		                      std::source_location sourceLocation = std::source_location::current());
+		
+		/// 致命错误退出程序
+		static void FatalExit(Logger &logger, StringViewW message, StringViewW caption,
+		                      std::source_location sourceLocation = std::source_location::current());
+		
+		/// 致命错误退出程序
+		static void FatalExit(Logger &logger, Window *window, StringViewA message, StringViewA caption,
+		                      std::source_location sourceLocation = std::source_location::current());
+		
+		/// 致命错误退出程序
+		static void FatalExit(Logger &logger, Window *window, StringViewW message, StringViewW caption,
+		                      std::source_location sourceLocation = std::source_location::current());
+		
+		/// 致命错误退出程序
+		static void FatalExit(Logger &logger, Window *window, StringViewA message,
+		                      std::source_location sourceLocation = std::source_location::current());
+		
+		/// 致命错误退出程序
+		static void FatalExit(Logger &logger, Window *window, StringViewW message,
+		                      std::source_location sourceLocation = std::source_location::current());
+		
 		/// 仅在 Windows 平台可用
 		class ANASUL_API OnlyInWindows
 		{
@@ -59,6 +83,37 @@ namespace Anasul
 				KeyUsers = 0x80000003,
 				KeyCurrentConfig = 0x80000005,
 			};
+			
+			enum MessageBoxType : u32
+			{
+				MessageBoxTypeOk = 0x00000000,
+				MessageBoxTypeOkCancel = 0x00000001,
+				MessageBoxTypeAbortRetryIgnore = 0x00000002,
+				MessageBoxTypeYesNoCancel = 0x00000003,
+				MessageBoxTypeYesNo = 0x00000004,
+				MessageBoxTypeRetryCancel = 0x00000005,
+				MessageBoxTypeCancelTryAgainContinue = 0x00000006,
+				MessageBoxTypeIconHand = 0x00000010,
+				MessageBoxTypeIconQuestion = 0x00000020,
+				MessageBoxTypeIconExclamation = 0x00000030,
+				MessageBoxTypeIconAsterisk = 0x00000040,
+				MessageBoxTypeUserIcon = 0x00000080,
+				MessageBoxTypeIconWarning = 0x00000030,
+				MessageBoxTypeIconError = 0x00000010,
+				MessageBoxTypeIconInformation = 0x00000040,
+			};
+			
+			/// 显示消息框
+			static void MessageBox(StringViewA text, StringViewA caption);
+			
+			/// 显示消息框
+			static void MessageBox(StringViewW text, StringViewW caption);
+			
+			/// 显示消息框
+			static i32 MessageBox(Window *window, StringViewA text, StringViewA caption, MessageBoxType type);
+			
+			/// 显示消息框
+			static i32 MessageBox(Window *window, StringViewW text, StringViewW caption, MessageBoxType type);
 			
 			/// 读取注册表值
 			static boolean ReadFromRegedit(Key hKey, StringViewW subKey, StringViewW subKeyValue, u32 &value);
@@ -90,17 +145,41 @@ namespace Anasul
 			/// 查找窗口的窗口
 			static Window *FindWindowFromClass(Logger &logger, StringViewW name);
 			
-			/// 设置窗口句柄
+			/// 加载图标
+			static void *LoadIcon(StringViewA name);
+			
+			/// 加载图标
+			static void *LoadIcon(StringViewW name);
+			
+			/// 销毁图标
+			static boolean DestroyIcon(void *icon);
+			
+			/// 加载光标
+			static void *LoadCursor(StringViewA name);
+			
+			/// 加载光标
+			static void *LoadCursor(StringViewW name);
+			
+			/// 销毁光标
+			static boolean DestroyCursor(void *cursor);
+			
+			/// 获取窗口句柄
 			static void *GetHWnd(const Window *window);
+			
+			/// 获取图标句柄
+			static void *GetHIcon(const Icon *icon);
 			
 			/// 设置父窗口
 			static void SetParent(Window *child, Window *parent);
 			
-			/// 设置父窗口为桌面
-			static void SetParentToDesktop(Window *child);
+			/// Aero效果是否可用（Windows Vista/Win7 可用，Win8/Win10 保持开启）
+			static boolean IsAeroEnabled();
 			
-			/// 隐藏窗口
-			static void EnumWindowHide();
+			/// 设置渲染到桌面
+			static void RenderToDesktop(Window *child);
+			
+			/// 隐藏窗口WorkerW
+			static void EnumWindowHideWorkerW();
 			
 			/// 发送消息
 			static void SendMessage(Window *window, u32 message, u32 wParam, u32 lParam);

@@ -5,7 +5,6 @@
 
 
 #include "WindowsWindow.hpp"
-#include <Anasul/Main.hpp>
 #include <Anasul/Logger.hpp>
 #include <Anasul/String.hpp>
 #include <Anasul/Windows/Windows.hpp>
@@ -27,24 +26,31 @@ namespace Anasul
 		WindowsWindow::Close();
 	}
 	
-	LPSTR WindowsWindow::GetDefaultWindowClassA()
+	LPSTR WindowsWindow::RegisterDefaultWindowClassA(Icon *icon, Icon *iconSm)
 	{
-		static auto atom = (LPSTR) MAKEINTATOM(RegisterWindowClass(
-			"DefaultWindowClassA", WndProcA, ::LoadIconA(nullptr, (LPCSTR) IDI_APPLICATION),
+		static u64 count = 0;
+		auto atom = (LPSTR) MAKEINTATOM(RegisterWindowClass(
+			std::format("AnasulWindowClassA-{}", count++), WndProcA,
+			(HICON) Platform::OnlyInWindows::GetHIcon(icon),
+			(HICON) Platform::OnlyInWindows::GetHIcon(iconSm),
 			::LoadCursorA(nullptr, (LPCSTR) IDC_ARROW)));
 		return atom;
 	}
 	
-	LPWSTR WindowsWindow::GetDefaultWindowClassW()
+	LPWSTR WindowsWindow::RegisterDefaultWindowClassW(Icon *icon, Icon *iconSm)
 	{
-		static auto atom = (LPWSTR) MAKEINTATOM(
+		static u64 count = 0;
+		auto atom = (LPWSTR) MAKEINTATOM(
 			RegisterWindowClass(
-				L"DefaultWindowClassW", WndProcW, ::LoadIconW(nullptr, (LPCWSTR) IDI_APPLICATION),
+				std::format(L"AnasulWindowClassW-{}", count++), WndProcW,
+				(HICON) Platform::OnlyInWindows::GetHIcon(icon),
+				(HICON) Platform::OnlyInWindows::GetHIcon(iconSm),
 				::LoadCursorW(nullptr, (LPCWSTR) IDC_ARROW)));
 		return atom;
 	}
 	
-	ATOM WindowsWindow::RegisterWindowClass(StringViewA className, WNDPROC wndProc, HICON icon, HCURSOR cursor)
+	ATOM
+	WindowsWindow::RegisterWindowClass(StringViewA className, WNDPROC wndProc, HICON icon, HICON iconSm, HCURSOR cursor)
 	{
 		WNDCLASSEXA wc{
 			.cbSize = sizeof(wc),
@@ -57,12 +63,14 @@ namespace Anasul
 			.hCursor = cursor,
 			.hbrBackground = nullptr,
 			.lpszMenuName = nullptr,
-			.lpszClassName = className.data()
+			.lpszClassName = className.data(),
+			.hIconSm = iconSm
 		};
 		return ::RegisterClassExA(&wc);
 	}
 	
-	ATOM WindowsWindow::RegisterWindowClass(StringViewW className, WNDPROC wndProc, HICON icon, HCURSOR cursor)
+	ATOM
+	WindowsWindow::RegisterWindowClass(StringViewW className, WNDPROC wndProc, HICON icon, HICON iconSm, HCURSOR cursor)
 	{
 		WNDCLASSEXW wc{
 			.cbSize = sizeof(wc),
@@ -75,7 +83,8 @@ namespace Anasul
 			.hCursor = cursor,
 			.hbrBackground = nullptr,
 			.lpszMenuName = nullptr,
-			.lpszClassName = className.data()
+			.lpszClassName = className.data(),
+			.hIconSm = iconSm
 		};
 		return ::RegisterClassExW(&wc);
 	}
@@ -85,7 +94,7 @@ namespace Anasul
 		Close();
 		m_hWnd = ::CreateWindowExA(
 			0,
-			GetDefaultWindowClassA(), args.m_title.data(), args.m_parent ? WS_CHILDWINDOW : WS_OVERLAPPEDWINDOW,
+			RegisterDefaultWindowClassA(args.m_icon, args.m_iconSm), args.m_title.data(), CreateStyle(args),
 			args.m_x, args.m_y, args.m_width, args.m_height,
 			(HWND) Platform::OnlyInWindows::GetHWnd(args.m_parent), nullptr,
 			::GetModuleHandleA(nullptr),
@@ -103,7 +112,7 @@ namespace Anasul
 		Close();
 		m_hWnd = ::CreateWindowExW(
 			0,
-			GetDefaultWindowClassW(), args.m_title.data(), args.m_parent ? WS_CHILDWINDOW : WS_OVERLAPPEDWINDOW,
+			RegisterDefaultWindowClassW(args.m_icon, args.m_iconSm), args.m_title.data(), CreateStyle(args),
 			args.m_x, args.m_y, args.m_width, args.m_height,
 			(HWND) Platform::OnlyInWindows::GetHWnd(args.m_parent), nullptr,
 			::GetModuleHandleW(nullptr),
@@ -131,7 +140,7 @@ namespace Anasul
 		return ::ShowWindow(m_hWnd, SW_HIDE);
 	}
 	
-	boolean WindowsWindow::Notify(StringViewA title)
+	boolean WindowsWindow::Notify(StringViewA title, Icon *icon)
 	{
 		//声明变量并初始化
 		NOTIFYICONDATAA nID = {
@@ -140,23 +149,23 @@ namespace Anasul
 			.uID = 1,
 			.uFlags = NIF_MESSAGE | NIF_TIP | NIF_ICON,
 			.uCallbackMessage = WM_COMMAND,
-			.hIcon =  ::LoadIconA(nullptr, (LPCSTR) IDI_APPLICATION),
+			.hIcon = (HICON) Platform::OnlyInWindows::GetHIcon(icon),
 			.szTip = {},
 			.dwState = 0,
 			.dwStateMask = 0,
-			.szInfo = "This is a notification",
+			.szInfo = {},
 			.uVersion = NOTIFYICON_VERSION_4,
-			.szInfoTitle = "Notification Title",
-			.dwInfoFlags = NIIF_USER,
+			.szInfoTitle = {},
+			.dwInfoFlags = 0,
 			.guidItem = GUID_NULL,
-			.hBalloonIcon = ::LoadIconA(nullptr, (LPCSTR) IDI_APPLICATION),
+			.hBalloonIcon = nullptr,
 		};
 		::lstrcpynA(nID.szTip, title.data(), static_cast<int>(title.size() + 1));
 		//通知windows添加一个托盘图标，看参数就知道啦
 		return ::Shell_NotifyIconA(NIM_ADD, &nID);
 	}
 	
-	boolean WindowsWindow::Notify(StringViewW title)
+	boolean WindowsWindow::Notify(StringViewW title, Icon *icon)
 	{
 		//声明变量并初始化
 		NOTIFYICONDATAW nID = {
@@ -165,16 +174,16 @@ namespace Anasul
 			.uID = 1,
 			.uFlags = NIF_MESSAGE | NIF_TIP | NIF_ICON,
 			.uCallbackMessage = WM_COMMAND,
-			.hIcon =  ::LoadIconW(nullptr, (LPCWSTR) IDI_APPLICATION),
+			.hIcon = (HICON) Platform::OnlyInWindows::GetHIcon(icon),
 			.szTip = {},
 			.dwState = 0,
 			.dwStateMask = 0,
-			.szInfo = TEXT("This is a notification"),
+			.szInfo = {},
 			.uVersion = NOTIFYICON_VERSION_4,
-			.szInfoTitle = TEXT("Notification Title"),
-			.dwInfoFlags = NIIF_USER,
+			.szInfoTitle = {},
+			.dwInfoFlags = 0,
 			.guidItem = GUID_NULL,
-			.hBalloonIcon = ::LoadIconW(nullptr, (LPCWSTR) IDI_APPLICATION),
+			.hBalloonIcon = nullptr,
 		};
 		::lstrcpynW(nID.szTip, title.data(), static_cast<int>(title.size() + 1));
 		//通知windows添加一个托盘图标，看参数就知道啦
@@ -183,9 +192,18 @@ namespace Anasul
 	
 	boolean WindowsWindow::Close()
 	{
-		if (this->m_hWnd == nullptr) return true;
-		boolean result = ::DestroyWindow((HWND) this->m_hWnd);
-		// this->m_hWnd = nullptr; // 在WM_DESTROY事件中重置
+		boolean result = true;
+		if (this->m_hWnd)
+		{
+			if (!::DestroyWindow((HWND) this->m_hWnd))
+				result = false;
+			// this->m_hWnd = nullptr; // 在WM_DESTROY事件中重置
+		}
+		if (this->m_classAtom)
+		{
+			if (!::UnregisterClassW((LPCWSTR) this->m_classAtom, ::GetModuleHandleW(nullptr)))
+				result = false;
+		}
 		return result;
 	}
 	
