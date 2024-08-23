@@ -27,6 +27,18 @@ namespace Anasul
 		/// 清空屏幕
 		virtual void Clear(const Color4f &color) = 0;
 		
+		/// 画圆形
+		virtual void DrawCircle(const Point2f &center, float radius, const Color4f &color) = 0;
+		
+		/// 填充圆形
+		virtual void FillCircle(const Point2f &center, float radius, const Color4f &color) = 0;
+		
+		/// 画矩形
+		virtual void DrawRectangle(const Rect4f &rect, const Color4f &color) = 0;
+		
+		/// 填充矩形
+		virtual void FillRectangle(const Rect4f &rect, const Color4f &color) = 0;
+		
 		/// 绘制文字
 		virtual void DrawText(const Font *font,
 		                      const StringA &text, const Rect4f &rect, const Color4f &color) = 0;

@@ -13,8 +13,9 @@ namespace Anasul
 	class ANASUL_API WindowRenderTarget : public RenderTarget
 	{
 	public:
-	
-	
+		
+		virtual void Resize(const Size2u &size) = 0;
+		
 	};
 	
 } // Anasul

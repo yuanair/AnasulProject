@@ -11,6 +11,7 @@
 #include "../Platform.hpp"
 
 #include <format>
+#include <windowsx.h>
 
 namespace Anasul
 {
@@ -490,6 +491,71 @@ namespace Anasul
 	{
 		switch (uMsg)
 		{
+			case WM_COMMAND:
+				POINT pt;
+				::GetCursorPos(&pt);
+				switch (lParam)
+				{
+					case WM_LBUTTONDOWN:
+						if (m_onMouseDown) m_onMouseDown(pt.x, pt.y, MouseButtonLeft);
+						return 0;
+					case WM_RBUTTONDOWN:
+						if (m_onMouseDown) m_onMouseDown(pt.x, pt.y, MouseButtonRight);
+						return 0;
+					case WM_MBUTTONDOWN:
+						if (m_onMouseDown) m_onMouseDown(pt.x, pt.y, MouseButtonMiddle);
+						return 0;
+					case WM_LBUTTONUP:
+						if (m_onMouseUp) m_onMouseUp(pt.x, pt.y, MouseButtonLeft);
+						return 0;
+					case WM_RBUTTONUP:
+						if (m_onMouseUp) m_onMouseUp(pt.x, pt.y, MouseButtonRight);
+						return 0;
+					case WM_MBUTTONUP:
+						if (m_onMouseUp) m_onMouseUp(pt.x, pt.y, MouseButtonMiddle);
+						return 0;
+					default:
+						return wndProc(m_hWnd, uMsg, wParam, lParam);
+				}
+			case WM_LBUTTONDOWN:
+				if (m_onMouseDown) m_onMouseDown(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), MouseButtonLeft);
+				return 0;
+			case WM_RBUTTONDOWN:
+				if (m_onMouseDown) m_onMouseDown(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), MouseButtonRight);
+				return 0;
+			case WM_MBUTTONDOWN:
+				if (m_onMouseDown) m_onMouseDown(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), MouseButtonMiddle);
+				return 0;
+			case WM_LBUTTONUP:
+				if (m_onMouseUp) m_onMouseUp(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), MouseButtonLeft);
+				return 0;
+			case WM_RBUTTONUP:
+				if (m_onMouseUp) m_onMouseUp(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), MouseButtonRight);
+				return 0;
+			case WM_MBUTTONUP:
+				if (m_onMouseUp) m_onMouseUp(GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam), MouseButtonMiddle);
+				return 0;
+			case WM_ACTIVATE:
+				switch (LOWORD(wParam))
+				{
+					case WA_INACTIVE:
+						if (m_onInactive) m_onInactive();
+						return 0;
+					case WA_ACTIVE:
+						if (m_onActive) m_onActive();
+						return 0;
+					case WA_CLICKACTIVE:
+						if (m_onClickActive) m_onClickActive();
+						return 0;
+					default:
+						return wndProc(m_hWnd, uMsg, wParam, lParam);
+				}
+			case WM_SIZE:
+				if (m_onResize) m_onResize(LOWORD(lParam), HIWORD(lParam));
+				return 0;
+			case WM_MOVE:
+				if (m_onMove) m_onMove(LOWORD(lParam), HIWORD(lParam));
+				return 0;
 			case WM_SETTINGCHANGE:
 			case WM_THEMECHANGED:
 				if (Platform::IsLightMode())
@@ -501,12 +567,16 @@ namespace Anasul
 				// 禁用 alt-enter.
 				return MAKELRESULT(0, MNC_CLOSE);
 			case WM_CLOSE:
-				Close();
+				if (!m_onClose || m_onClose()) Close();
 				return 0;
 			case WM_DESTROY:
-				::PostQuitMessage(0);
+				if (!m_onDestroy || m_onDestroy()) ::PostQuitMessage(0);
 				m_hWnd = nullptr;
 				return 0;
+			case WM_QUERYENDSESSION:
+				return !m_onQueryEndSession || m_onQueryEndSession();
+			case WM_ENDSESSION:
+				return !m_onEndSession || m_onEndSession();
 			default:
 				return wndProc(m_hWnd, uMsg, wParam, lParam);
 		}

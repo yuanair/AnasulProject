@@ -7,6 +7,7 @@
 #include <Anasul/Config.hpp>
 
 #include <Anasul/String.hpp>
+#include "Anasul/Event.hpp"
 
 namespace Anasul
 {
@@ -270,7 +271,24 @@ namespace Anasul
 		[[nodiscard]] virtual boolean GetMouseButtonPress(MouseButton button) const = 0;
 		
 		virtual void GetMousePosition(i32 &x, i32 &y) const = 0;
+	
+	public:
 		
+		Event<void()> m_onInactive;
+		Event<void()> m_onActive;
+		Event<void()> m_onClickActive;
+		Event<boolean()> m_onClose;
+		Event<boolean()> m_onDestroy;
+		Event<boolean()> m_onQueryEndSession;
+		Event<boolean()> m_onEndSession;
+		Event<void(i32, i32)> m_onResize;
+		Event<void(i32, i32)> m_onMove;
+		Event<void(Key)> m_onKeyDown;
+		Event<void(Key)> m_onKeyUp;
+		Event<void(Key)> m_onKeyPress;
+		Event<void(i32, i32, MouseButton)> m_onMouseDown;
+		Event<void(i32, i32, MouseButton)> m_onMouseUp;
+		Event<void(i32, i32, MouseButton)> m_onMousePress;
 		
 	};
 	

@@ -18,8 +18,7 @@ class WallpaperEngineProgram;
 class WindowBase
 {
 public:
-	explicit WindowBase(WallpaperEngineProgram &program, Anasul::StringView windowName, Anasul::Icon *icon,
-	                    Anasul::Icon *iconSm, Anasul::Window *parent, Anasul::boolean isFrameless);
+	explicit WindowBase(WallpaperEngineProgram &program, const Anasul::WindowCreateArgs<Anasul::chararcter> &args);
 	
 	
 	virtual ~WindowBase() = default;

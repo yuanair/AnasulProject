@@ -6,18 +6,13 @@
 
 #include "WallpaperEngineProgram.hpp"
 
-WindowBase::WindowBase(WallpaperEngineProgram &program, Anasul::StringView windowName, Anasul::Icon *icon,
-                       Anasul::Icon *iconSm, Anasul::Window *parent, Anasul::boolean isFrameless)
+WindowBase::WindowBase(WallpaperEngineProgram &program, const Anasul::WindowCreateArgs<Anasul::chararcter> &args)
 	: program(program)
 {
 	m_window = std::move(Anasul::WindowFactory::CreateWindow(Anasul::WindowType::Default, program.GetLogger()));
-	if (!m_window->Create(
-		Anasul::WindowCreateArgs<Anasul::chararcter>{
-			windowName, 0, 0, INT_MIN, INT_MIN, icon, iconSm, parent, isFrameless
-		}
-	))
+	if (!m_window->Create(args))
 	{
-		Anasul::Platform::FatalExit(program.GetLogger(), TEXT("cannot create window"), windowName);
+		Anasul::Platform::FatalExit(program.GetLogger(), TEXT("cannot create window"), args.m_title);
 		return;
 	}
 }
