@@ -39,6 +39,9 @@ void WallpaperEngineProgram::BeginPlay()
 		{
 			GetLogger().Log(Anasul::LogLevel::Error, std::format(TEXT("Error Boot start up: {}"), buffer));
 			Anasul::Platform::OnlyInWindows::DeleteBootStartUp(AppName);
+			Anasul::Platform::OnlyInWindows::SetBootStartUp(AppName, startUpFileName);
+			GetLogger().Log(
+				Anasul::LogLevel::Info, std::format(TEXT("Set Boot start up: {}"), startUpFileName));
 		}
 		else
 		{
